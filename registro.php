@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html>
-
+    
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">       
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="controladorRegistro.js"></script>
+
 </head>
     
 <body>
 
     <h1 class="tituloPagina">Registrarse</h1>
-    <form action="./verificarTel.php" method="GET">
+    <form name="formRegistrarse" id="formRegistrarse">
         <div class="cajaTexto">
-            <label for="nombreR">Nombre:</label><br> 
-            <input type="text" name="nombreR" id="nombreR"><br>   
+            <label for="nombre">Nombre:</label><br> 
+            <input type="text" name="nombre" id="nombre"><br>   
         
-            <label for="emailR">Email:</label><br>
-            <input type="text" name="emailR" id="emailR"><br>       
+            <label for="email">Email:</label><br>
+            <input type="text" name="email" id="email"><br>       
 
-            <label for="passwordR">Password:</label><br>
-            <input type="text" name="passwordR" id="passwordR"><br>
+            <label for="password">Password:</label><br>
+            <input type="text" name="password" id="password"><br>
 
-            <label for="telefonoR">Telefono:</label><br>
-            <input type="text" name="telefonoR" id="telefonoR"><br>
+            <label for="telefono">Telefono:</label><br>
+            <input type="text" name="telefono" id="telefono"><br>
         
-            <label for="dniR">DNI:</label><br>
-            <input type="text" name="dniR" id="dniR"><br>
+            <label for="dni">DNI:</label><br>
+            <input type="text" name="dni" id="dni"><br>
         
-            <label for="fotoR">Foto:</label><br>
-            <input type="file" name="fotoR" id="fotoR"><br>
+            <label for="foto">Foto:</label><br>
+            <input type="file" name="foto" id="foto"><br>
         </div>
 
-        <input class="boton" type="submit" value="Registrarse" name="botonRegistro">
+        <input class="boton" type="button" value="Registrarse" name="botonRegistro" id="botonRegistrar">
 
     </form>
     
