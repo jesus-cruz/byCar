@@ -14,7 +14,7 @@
 <body>
 
     <h1 class="tituloPagina">Registrarse</h1>
-    <form name="formRegistrarse" id="formRegistrarse">
+    <form name="formRegistrarse" id="formRegistrarse" enctype="multipart/form-data">
         <div class="cajaTexto">
             <label for="nombre">Nombre:</label><br> 
             <input type="text" name="nombre" id="nombre"><br>   
@@ -32,7 +32,7 @@
             <input type="text" name="dni" id="dni"><br>
         
             <label for="foto">Foto:</label><br>
-            <input type="file" name="foto" id="foto"><br>
+            <input type="file" name="fileToUpload" id="foto"><br>
         </div>
 
         <input class="boton" type="button" value="Registrarse" name="botonRegistro" id="botonRegistrar">
