@@ -43,6 +43,7 @@ CREATE TABLE `Mensajes` (
   `origen` int(11) NOT NULL,
   `destino` int(11) NOT NULL,
   `contenido` varchar(140) NOT NULL,
+  `horaMensaje` datetime NOT NULL,
   `idMensaje` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
