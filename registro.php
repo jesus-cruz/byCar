@@ -7,7 +7,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     
-    <script type="text/javascript" src="controladorRegistro.js"></script>
+    <script type="text/javascript" src="frontendJS/controladorRegistro.js"></script>
 
 </head>
     
@@ -18,7 +18,13 @@
         <div class="cajaTexto">
             <label for="nombre">Nombre:</label><br> 
             <input type="text" name="nombre" id="nombre"><br>   
-        
+            
+            <label for="tipo"> Tipo de usuario:</label><br>
+            <select name="tipo">
+                <option value="0">Pasajero</option>
+                <option value="1">Conductor</option>
+            </select><br>
+            
             <label for="email">Email:</label><br>
             <input type="text" name="email" id="email"><br>       
 

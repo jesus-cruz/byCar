@@ -1,5 +1,6 @@
 <?php   
     $nombre = $_POST['nombre'];
+    $flag   = $_POST['tipo'];
     $email  = $_POST['email'];
     $passwd = $_POST['password'];
     $tlfno = $_POST['telefono'];
@@ -7,7 +8,7 @@
 
     $tablaUsuariosModelo = new TablaUsuarios();
     //$tablaUsuariosModelo->__construct();
-    $tablaUsuariosModelo->añadirUsuario($nombre,$email,$passwd,$tlfno,$dni);
+    $tablaUsuariosModelo->añadirUsuario($nombre,$flag,$email,$passwd,$tlfno,$dni);
     
 
 class TablaUsuarios
@@ -29,26 +30,72 @@ class TablaUsuarios
         }
    	}
 
+    private function comprobarFlag($flag){
+        switch ($flag) {
+            // Flag de tipo de usuario Pasajero
+            case 0:               
+                return true;
+                break;
+            // Flag de tipo de usuario Conductor
+            case 1:
+                return true;
+                break;
+            // Cualquier otro tipo
+            default:
+                return false;
+                break;
+        }
+    }
+    
 	// Añadimos un usuario habiéndonos conectado antes
-	public function añadirUsuario($nombre,$email,$passwd,$tlfno,$dni){
+	public function añadirUsuario($nombre,$flag,$email,$passwd,$tlfno,$dni){
+        // Comprobamos si estamos conectados a la db
         if ( is_null($this->db) ){
             $this->__construct();
         }
+        
+        if ( !$this->comprobarFlag($flag) ){
+            echo "Error al añadir flag el usuario " . $nombre;
+            return;
+        }
+        
         $nombre = '"' . $nombre . '"';
+        $flag = '"' . $flag . '"';
         $email = '"' . $email . '"';
         $passwd = '"' . $passwd . '"';
         $tlfno = '"' . $tlfno . '"';
         $dni = '"' . $dni . '"';
         
-        $usuario= $this->db->query('INSERT INTO Usuarios ( nombreUsuario,
-        email, password, telefono, dni) 
-            VALUES ( '  
-                   .$nombre .'
-                ,' .$email .'
-                ,' .$passwd .'
-                ,' .$tlfno .'
-                ,' .$dni .')');
+        /* Antes de insertar un usuario comprobamos que no haya otro con el mismo 
+         * nombre de usuario
+         */
+        $sql = 'SELECT * FROM Usuarios WHERE nombreUsuario=' . $nombre;
+        $resultado = $this->db->query($sql);
+        if ($resultado->rowCount() > 0) {
+            echo "Ya existe un usuario con el nombre " . $nombre;
+            return;
         }
+        else {
+            $sql = 'INSERT INTO Usuarios ( flag,nombreUsuario,
+            email, password, telefono, dni) 
+                VALUES ( '  
+                       .$flag   .'
+                    ,' .$nombre .'
+                    ,' .$email  .'
+                    ,' .$passwd .'
+                    ,' .$tlfno  .'
+                    ,' .$dni    .'
+                    )';
+
+            $usuario = $this->db->query($sql); 
+            if ( $usuario == FALSE){
+                echo "Error al añadir el usuario " . $nombre . $sql;
+                return;
+            } else {
+                echo "Usuario " . $nombre . " creado con éxito";
+            }
+        }       
+    }
 }
 
 

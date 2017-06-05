@@ -9,6 +9,7 @@ $(document).ready(function () {
            alert("Por favor, rellene todos los campos");
        } else {
            registrarUsuario();
+           verificarMovil();
        }
     });    
 });
@@ -17,6 +18,7 @@ $(document).ready(function () {
 function comprobarCampos(){
     // Comprobamos los campos
     if( $("#nombre").val()   == "" ||
+        $("#tipo").val()     == "" ||
         $("#email").val()    == "" || 
         $("#password").val() == "" ||
         $("#telefono").val() == "" ||
@@ -28,16 +30,21 @@ function comprobarCampos(){
     }
 }
 
-function registrarUsuario(){
-    
+function registrarUsuario(){    
+    // Registramos el teléfono
     $.ajax({
         type: "POST",
-        url: "scripts/registrarUsuario.php",
+        url: "backendPHP/registrarUsuario.php",
         data: $("#formRegistrarse").serialize(),
         success: function (data) {
             alert(data);
         }
     });
-    
-    
+}
+
+function verificarMovil(){
+    // Script en php llamado en un servicio web, formato JSON de envio y respuesta
+    // POST desde php
+    // El login y el passsword del servicio es prueba, tb pasamos el movil
+    // Devuelve un codigo aleatorio de 5 cifras y lo escribimos en el html con js
 }
