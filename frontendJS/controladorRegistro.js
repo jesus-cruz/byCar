@@ -8,7 +8,7 @@ $(document).ready(function () {
        if ( !comprobarCampos() ){
            alert("Por favor, rellene todos los campos");
        } else {
-           registrarUsuario();
+           //registrarUsuario();
            verificarMovil();
        }
     });    
@@ -31,13 +31,29 @@ function comprobarCampos(){
 }
 
 function registrarUsuario(){    
-    // Registramos el teléfono
+    // Registramos el usuario
     $.ajax({
         type: "POST",
         url: "backendPHP/registrarUsuario.php",
         data: $("#formRegistrarse").serialize(),
         success: function (data) {
-            alert(data);
+            switch(data){
+                case '1':
+                    alert("Usuario creado con éxito");
+                    break;
+                case '-1':
+                    alert("Tipo de usuario erróneo");
+                    break;
+                case '-2':
+                    alert("Ya existe un usuario con ese nombre");
+                    break;
+                case '-3':
+                    alert("Error en algún parámetro");
+                    break;
+                default: 
+                    alert("Error desconocido");   
+                    break;
+            }
         }
     });
 }
@@ -47,4 +63,13 @@ function verificarMovil(){
     // POST desde php
     // El login y el passsword del servicio es prueba, tb pasamos el movil
     // Devuelve un codigo aleatorio de 5 cifras y lo escribimos en el html con js
+    $.ajax({
+        type: "POST",
+        url: "backendPHP/verificarMovil.php",
+        data: $("#telefono").serialize(),
+        success: function (data) {
+            // Nos devuelve el código a introducir y lo escribimos 
+            $("#campoCodigo").val(data.replace(/"/g,''));
+        }
+    });
 }

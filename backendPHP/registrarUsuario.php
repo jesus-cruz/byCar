@@ -53,9 +53,9 @@ class TablaUsuarios
         if ( is_null($this->db) ){
             $this->__construct();
         }
-        
+        // Caso de flag erróneo
         if ( !$this->comprobarFlag($flag) ){
-            echo "Error al añadir flag el usuario " . $nombre;
+            echo -1;
             return;
         }
         
@@ -71,8 +71,9 @@ class TablaUsuarios
          */
         $sql = 'SELECT * FROM Usuarios WHERE nombreUsuario=' . $nombre;
         $resultado = $this->db->query($sql);
+        // Ya existe un usuario con ese nombre
         if ($resultado->rowCount() > 0) {
-            echo "Ya existe un usuario con el nombre " . $nombre;
+            echo -2;
             return;
         }
         else {
@@ -88,11 +89,14 @@ class TablaUsuarios
                     )';
 
             $usuario = $this->db->query($sql); 
+            // Error al formar la query
             if ( $usuario == FALSE){
-                echo "Error al añadir el usuario " . $nombre . $sql;
+                echo -3;
                 return;
+            // Éxito
             } else {
-                echo "Usuario " . $nombre . " creado con éxito";
+                echo 1;
+                //header("location: ../login.php");
             }
         }       
     }

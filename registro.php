@@ -45,10 +45,10 @@
 
     </form>
     
-    <form action="./verificarCodigo.php" method="GET">
+    <form action="backendPHP/verificarCodigo.php" method="GET">
         <div class="cajaTexto">
             <label for="codigo">Código:</label><br> 
-            <input type="text" name="codigo" id="codigo"><br>   
+            <input type="text" name="campoCodigo" id="campoCodigo"><br>   
         </div>
 
         <input class="boton" type="submit" value="Enviar Código" name="botonCodigo">
