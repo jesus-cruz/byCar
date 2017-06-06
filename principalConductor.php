@@ -9,6 +9,16 @@
 </head>
 
 <body>
+
+	<?php
+        session_start(); //reanuda la sesion
+        
+        if( !isset($_SESSION['usuarioActual']) || $_SESSION['flag']!=1 ){ //no hay nada en la sesion o alguien que no es conductor pretende acceder a esta pagina
+            header("location: login.php");
+        }
+
+    ?>
+
     <h1 class="tituloPagina"> Buscar un viaje</h1>
     <div class="cajaTexto">
     <label for="buscarOrigen"> Origen </label>
@@ -50,7 +60,11 @@
     
     <button class="boton" type="button" onclick="">Publicar trayecto</button>
 
+    <a href="backendPHP/cerrarSesion.php">Cerrar sesion</a>
     
+    <?php
+        //echo"usuario " . $_SESSION['usuarioActual'] . " id-> " . $_SESSION['id'];
+    ?> 
 </body>
 
 

@@ -8,15 +8,15 @@
 <body>
 
     <h1 class="tituloPagina">Iniciar sesion</h1>
-    <form action="./verificarUsuario.php" method="GET">
+    <form action="backendPHP/verificarUsuario.php" method="POST">
         <div class="cajaTexto">
-            <label for="emailU"> Email:</label><br>
-            <input type="text" name="emailU" id="emailU"><br>
+            <label for="usuario"> Usuario:</label><br>
+            <input type="text" name="usuario" id="usuario"><br>
 
-            <label for="passwordU"> Password:</label><br>
-            <input type="text" name="passwordU" id="passwordU"><br>
+            <label for="password"> Password:</label><br>
+            <input type="password" name="password" id="password"><br>
         </div>
-        <button class="boton" type="button" onclick="">Entrar</button>
+        <input class="boton" type="submit" value="Entrar">
 
     </form>
 
