@@ -8,7 +8,8 @@ $(document).ready(function () {
        if ( !comprobarCampos() ){
            alert("Por favor, rellene todos los campos");
        } else {
-           //registrarUsuario();
+           registrarUsuario();
+           //subirImagen();
            verificarMovil();
        }
     });    
@@ -54,6 +55,18 @@ function registrarUsuario(){
                     alert("Error desconocido");   
                     break;
             }
+        }
+    });
+}
+
+function subirImagen(){
+    $.ajax({
+        type: "POST",
+        url: "backendPHP/subirImagen.php",
+        data: $("#formFoto").serialize(),
+        success: function (data) {
+            //$("#campoCodigo").val(data.replace(/"/g,''));
+            alert(data);
         }
     });
 }

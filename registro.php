@@ -35,15 +35,20 @@
             <input type="text" name="telefono" id="telefono"><br>
         
             <label for="dni">DNI:</label><br>
-            <input type="text" name="dni" id="dni"><br>
-        
-            <label for="foto">Foto:</label><br>
-            <input type="file" name="fileToUpload" id="foto"><br>
+            <input type="text" name="dni" id="dni"><br>      
+            
         </div>
 
         <input class="boton" type="button" value="Registrarse" name="botonRegistro" id="botonRegistrar">
 
     </form>
+    
+    <div class="cajaTexto">
+        <form action="backendPHP/subirImagen.php" method="post"name="formFoto" enctype="multipart/form-data" >
+                <input type="file" name="foto" id="foto"><br>
+                <input type="submit" name="subirFoto" value="subir">
+        </form>
+    </div>
     
     <form action="backendPHP/verificarCodigo.php" method="GET">
         <div class="cajaTexto">
