@@ -28,7 +28,10 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 
 	public function getMessagesList($id_0, $id_1)
 	{
-		# code...
+		$sql = "SELECT FROM mensages WHERE origen =" . $id_0 . "AND destino=" . $id_1 . "'";
+		$list = $GLOBALS['conn']->querry($sql);
+
+		echo json_encode($list);
 	}
 }
 ?>
