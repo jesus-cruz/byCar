@@ -8,7 +8,10 @@ you.id = 1; //Harcodeado para testeo;
 $(document).ready(function(){
 	//Documento preparado
 	//Recuperamos mediante ajax todos los chats entre los usuarios
+
 	getChatMessages(you.id);
+	//setInterval(function() { resetChat(); getChatMessages(you.id); },1000);	//Actualiza el chat cada segundo,
+
 	//Evento para que el mensaje pase a la lista
 	$(".mytext").on("keydown", function(event){
 		if (event.which == 13){
@@ -129,7 +132,6 @@ function createMessageElementMe(text, date) {
 
 	addToList(HTML_); 
 }
-
 function addToList(element) {
 	$('ul').append(element);	
 }
