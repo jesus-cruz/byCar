@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$databasename = "bycardb";
+$databasename = "database";
 
 session_start();
 

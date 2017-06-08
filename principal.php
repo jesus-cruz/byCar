@@ -6,6 +6,10 @@
 
 <head>
     <title>Buscador de viajes</title>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="jquery-3.2.1.min.js"></script>
+<script src="testKeanu.js"></script>
 </head>
 
 <body>
@@ -35,6 +39,14 @@
     <a href="./registro.php">Registrarse</a><br>
     </div>
 
+	<div id="resBusqueda"><b>search results will appear here</b></div> 
+    
+
+	<div id="LTrayectos"><b>list of trips will appear here</b></div>
+
+
+
+	<div id="infoTrayecto"><b>trip info will appear here</b></div> 
 
 </body>
 
