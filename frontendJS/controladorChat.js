@@ -14,7 +14,7 @@ $(document).ready(function(){
 		if (event.which == 13){
 			var text = $(this).val();
 			if (text !== ""){
-				writeMessage(text);              
+				insertChatMessageInDB(you.id,text);              
 				$(this).val('');
 			}
 		}
@@ -41,6 +41,7 @@ function getChatMessages(other_id) {
 	});
 }
 /*agnade un mensajde de chat a la BBDD, la fecha se coge por PHP, se le pasa el ID del destinatario*/
+//Si el php es correcto añadira tambien este mensaje a la lista que se muestra por pantalla
 function insertChatMessageInDB(other_id,message_){
 
 	$.ajax({
@@ -51,10 +52,11 @@ function insertChatMessageInDB(other_id,message_){
 			user_id_1: other_id,
 			message: message_ ,
 		},
-		dataType: "text",
+		dataType: "json",
 		cache: "false",
-		success:function(data){		
-			alert(data);
+		success:function(data){
+			//Data contiene la hora a la que ha sido enviada el mensaje y el mensaje que ha sido insertado.
+			insertMessageInList("me",data['message'],data['time']);
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
@@ -77,16 +79,6 @@ function decodeMessageListAsJSON(data) {
 	}
 }
 
-
-/*Escribe un mensaje en la bbdd y lo inserta en la lista y */
-function writeMessage(text){
-
-	insertChatMessageInDB(you.id,text)
-	insertMessageInList("me",text);
-	
-
-}
-
 /*Solo para testear, funcion no necesario*/
 function writeMessageYOU(text){
 
@@ -98,9 +90,6 @@ function writeMessageYOU(text){
 
 /*Interta un mensaje en la lista visible*/
 function insertMessageInList(who, text, date){
-
-	var control = "";
-	var date = new Date();
 
 	if(who=="me"){
 		createMessageElementMe(text,date);

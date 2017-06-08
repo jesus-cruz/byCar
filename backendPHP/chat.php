@@ -30,21 +30,26 @@ $GLOBALS['conn']->close();
 function sendMessage($message,$from, $to)
 {
 
+	$message_date = date("Y-m-d H:i:s");
+	$message_hash = substr(hash("ripemd160", $from.$to.$message.$message_date),0,60); //Se usan los 60 primeros digitos del hash como id
+
 	$message = substr($message, 0, 140);	//limitamos a 140 caracteres
 
-	$sql = "INSERT INTO Mensajes (origen, destino, contenido, horaMensaje) VALUES ('".$from."','".$to."','".$message."','".date("Y-m-d H:i:s")."')";
+	$sql = "INSERT INTO Mensajes (origen,destino,contenido,idMensaje,horaMensaje) VALUES ('".$from."','".$to."','".$message."','".$message_hash."','".$message_date."')";
 
 	if($GLOBALS['conn']->query($sql)){ //Inserta el mensaje enviado en la BBDD
-		echo "Exito";
+		echo json_encode(array('time' => $message_date,
+							   'message' => $message, 
+							  	));
 	}else{
-		echo $GLOBALS['conn']->error;
+		echo json_encode(array('errorname' => $GLOBALS['conn']->error,));
 	}
 }
 
 function getMessagesList($from, $to)
 {
 
-	$sql = "SELECT * FROM Mensajes WHERE origen ='".$from."' AND destino='".$to."' OR origen ='".$to."' AND destino='".$from."'";
+	$sql = "SELECT * FROM Mensajes WHERE origen ='".$from."' AND destino='".$to."' OR origen ='".$to."' AND destino='".$from."' ORDER BY horaMensaje";
 	$result = $GLOBALS['conn']->query($sql);
 
 	$return_arr = array();
