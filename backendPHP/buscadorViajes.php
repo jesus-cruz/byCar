@@ -29,7 +29,7 @@ class BusquedaViajes
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
-		$databasename = "database";
+		$databasename = "byCarDB";
 
 		
 		$this->db = new mysqli($servername, $username, $password, $databasename);

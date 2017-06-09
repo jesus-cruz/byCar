@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$databasename = "database";
+$databasename = "byCarDB";
 
 session_start();
 
@@ -35,7 +35,7 @@ function sendMessage($message,$from, $to)
 
 	$message = substr($message, 0, 140);	//limitamos a 140 caracteres
 
-	$sql = "INSERT INTO Mensajes (origen,destino,contenido,idMensaje,horaMensaje) VALUES ('".$from."','".$to."','".$message."','".$message_hash."','".$message_date."')";
+	$sql = "INSERT INTO mensajes (origen,destino,contenido,idMensaje,horaMensaje) VALUES ('".$from."','".$to."','".$message."','".$message_hash."','".$message_date."')";
 
 	if($GLOBALS['conn']->query($sql)){ //Inserta el mensaje enviado en la BBDD
 		echo json_encode(array('time' => $message_date,
@@ -49,7 +49,7 @@ function sendMessage($message,$from, $to)
 function getMessagesList($from, $to)
 {
 
-	$sql = "SELECT * FROM Mensajes WHERE origen ='".$from."' AND destino='".$to."' OR origen ='".$to."' AND destino='".$from."' ORDER BY horaMensaje";
+	$sql = "SELECT * FROM mensajes WHERE origen ='".$from."' AND destino='".$to."' OR origen ='".$to."' AND destino='".$from."' ORDER BY horaMensaje";
 	$result = $GLOBALS['conn']->query($sql);
 
 	$return_arr = array();

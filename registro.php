@@ -29,7 +29,7 @@
             <input type="text" name="email" id="email"><br>       
 
             <label for="password">Password:</label><br>
-            <input type="text" name="password" id="password"><br>
+            <input type="password" name="password" id="password"><br>
 
             <label for="telefono">Telefono:</label><br>
             <input type="text" name="telefono" id="telefono"><br>
@@ -45,7 +45,7 @@
     
     <div class="cajaTexto">
         <form action="backendPHP/subirImagen.php" method="post"name="formFoto" enctype="multipart/form-data" >
-                <input type="file" name="foto" id="foto"><br>
+                <input type="file" name="foto" id="foto"  accept="image/*" ><br>
                 <input type="submit" name="subirFoto" value="subir">
         </form>
     </div>
