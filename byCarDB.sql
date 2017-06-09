@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 09, 2017 at 04:30 PM
+-- Generation Time: Jun 09, 2017 at 05:56 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -136,7 +136,6 @@ INSERT INTO `usuarios` (`id`, `flag`, `nombreUsuario`, `email`, `password`, `tel
 CREATE TABLE `viajes` (
   `id` int(11) NOT NULL,
   `horaSalida` datetime NOT NULL,
-  `precio` float NOT NULL,
   `conductorID` int(11) NOT NULL,
   `nPlazas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;

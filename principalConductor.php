@@ -43,24 +43,25 @@
             <h1 class="tituloPagina">Crear un nuevo trayecto</h1>
             <form id="formCrear">
                 Hora de salida<br>
-                <input type="text" name="firstname">
+                <input type="date" id="horaSalida">
+                
+                <br> Número de plazas<br>
+                <input type="text" id="nPlazas">
+                <br>
+        <input type="button" id="crearTrayectoForm" value="Crear">
+                <br>
+                <br> Destino     <br>
+                <input type="text" id="destino">
                 
                 <br> Hora de llegada<br>
-                <input type="text" name="firstname">
+                <input type="text" id="horaLlegada">
                 
                 <br> Precio<br>
-                <input type="text" name="lastname">
+                <input type="date" id="precio">
                 <br>
+    
+                <button class="boton" id="botonAgregarDestino" type="button" onclick="">Añadir destino</button>                
                 
-                Número de plazas<br>
-                <input type="text" name="firstname">
-                <br>
-                
-                Hora de salida<br>
-                <input type="text" name="firstname">
-                <br>
-                
-                <input type="submit" value="Submit">
             </form>
         </div>
 
