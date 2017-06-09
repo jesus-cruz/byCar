@@ -9,8 +9,7 @@ $(document).ready(function () {
            alert("Por favor, rellene todos los campos");
        } else {
            registrarUsuario();
-           //subirImagen();
-           verificarMovil();
+           subirImagen();
        }
     });    
 });
@@ -27,6 +26,8 @@ function comprobarCampos(){
         $("#foto").val()     == "" ){
         return false;
     } else {
+        var tfno = $("#telefono");
+        localStorage.setItem("tfno",tfno);
         return true;
     }
 }
@@ -59,30 +60,7 @@ function registrarUsuario(){
     });
 }
 
-function subirImagen(){
-    $.ajax({
-        type: "POST",
-        url: "backendPHP/subirImagen.php",
-        data: $("#formFoto").serialize(),
-        success: function (data) {
-            //$("#campoCodigo").val(data.replace(/"/g,''));
-            alert(data);
-        }
-    });
+function subirImagen(){  
+    $("#formFoto").submit();
 }
 
-function verificarMovil(){
-    // Script en php llamado en un servicio web, formato JSON de envio y respuesta
-    // POST desde php
-    // El login y el passsword del servicio es prueba, tb pasamos el movil
-    // Devuelve un codigo aleatorio de 5 cifras y lo escribimos en el html con js
-    $.ajax({
-        type: "POST",
-        url: "backendPHP/verificarMovil.php",
-        data: $("#telefono").serialize(),
-        success: function (data) {
-            // Nos devuelve el código a introducir y lo escribimos 
-            $("#campoCodigo").val(data.replace(/"/g,''));
-        }
-    });
-}
