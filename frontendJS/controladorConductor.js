@@ -14,7 +14,7 @@
 $(document).ready(function () {
     // Por defecto mostramos los botones para seleccionar la accion a realizar
     cambiarEstado("vacio");
-
+    
     // Crear un nuevo trayecto
     $("#botonCrear").click(function () {
         cambiarEstado("crear");
@@ -44,6 +44,12 @@ $(document).ready(function () {
     $("#botonCancelar").click(function () {
         cambiarEstado("cancelar");
     });
+    
+    
+    
+    $("#crearTrayectoForm").click(function () {
+        crearTrayecto();
+    });
 });
 
 function cambiarEstado(estado) {
@@ -70,16 +76,37 @@ function vaciar() {
 }
 
 function crearTrayecto() {
+    if ( comprobarCampos()){
+        // Si hay datos suficientes crearemos el destino
+        $.ajax({
+        type: "POST",
+        url: "backendPHP/guardarViaje.php",
+        data: $("#formCrear").serialize(),
+        success: function (data) {
+            //alert(data);
+        }
+    });
+    } else {
+        alert("Error en los campos, introduzca los necesarios y al menos un destino");
+    }
+    // Primero añadimos el trayecto
     
+    // Añadimos al menos una parada, al añadirla limpiamos los campos
 }
 
-
-
-
-
-
-
-
+function comprobarCampos(){
+    return true;
+    // Comprobar campos
+    if( $("#horaSalida").val()  == "" ||
+        $("#nPlazas").val()     == "" ||
+        $("#destino").val()     == "" || 
+        $("#horaLlegada").val() == "" ||
+        $("#precio").val()      == "" ){
+        return false;
+    } else {
+        return true;
+    }
+}
 
 
 

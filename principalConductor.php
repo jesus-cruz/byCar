@@ -41,27 +41,27 @@
 
         <div class="cajaTexto" id="cajaCrear">
             <h1 class="tituloPagina">Crear un nuevo trayecto</h1>
-            <form id="formCrear">
+            <form id="formCrear" name="formCrear">
                 Hora de salida<br>
-                <input type="text" name="firstname">
-                
+                <input type="text" id="horaSalida" name="horaSalida">
+
+                <br> Número de plazas<br>
+                <input type="text" id="nPlazas" name="nPlazas">
+
+                <br> Destino <br>
+                <input type="text" id="destino" name="destino">
+
                 <br> Hora de llegada<br>
-                <input type="text" name="firstname">
-                
+                <input type="text" id="horaLlegada" name="horaLlegada">
+
                 <br> Precio<br>
-                <input type="text" name="lastname">
+                <input type="text" id="precio" name="precio">
                 <br>
-                
-                Número de plazas<br>
-                <input type="text" name="firstname">
-                <br>
-                
-                Hora de salida<br>
-                <input type="text" name="firstname">
-                <br>
-                
-                <input type="submit" value="Submit">
             </form>
+            <button class="boton" id="botonAgregarDestino" type="button" onclick="">Añadir destino</button>
+            <br>
+            <input type="button" id="crearTrayectoForm" value="Crear">
+            <br>
         </div>
 
         <div class="cajaTexto" id="cajaListarTrayectos">
