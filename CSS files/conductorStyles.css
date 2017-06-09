@@ -1,0 +1,30 @@
+.cajaTexto {
+	text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 200%;
+}
+
+.tituloPagina {
+    text-align: center;
+}
+
+button {
+    display:inline-block;       
+    margin:0 auto;
+}
+
+.grupoBotones {
+    text-align: center;
+}
+
+.enlaces {
+	text-align: center;
+    margin-bottom: 20px;
+    line-height: 200%;
+}
+
+.textoPresentacion {
+	text-align: center;
+    margin-bottom: 20px;
+}

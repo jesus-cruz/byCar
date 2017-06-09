@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 08-06-2017 a las 12:54:39
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Host: localhost
+-- Generation Time: Jun 09, 2017 at 04:30 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,38 +19,38 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `database`
+-- Database: `byCarDB`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comentarios`
+-- Table structure for table `comentarios`
 --
 
 CREATE TABLE `comentarios` (
   `idViaje` int(11) NOT NULL,
   `idComen` int(11) NOT NULL,
-  `comentario` varchar(140) NOT NULL,
+  `comentario` varchar(140) COLLATE utf8_spanish_ci NOT NULL,
   `puntuacion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mensajes`
+-- Table structure for table `mensajes`
 --
 
 CREATE TABLE `mensajes` (
   `origen` int(11) NOT NULL,
   `destino` int(11) NOT NULL,
-  `contenido` varchar(140) NOT NULL,
-  `idMensaje` varchar(60) NOT NULL,
+  `contenido` varchar(140) COLLATE utf8_spanish_ci NOT NULL,
+  `idMensaje` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `horaMensaje` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `mensajes`
+-- Dumping data for table `mensajes`
 --
 
 INSERT INTO `mensajes` (`origen`, `destino`, `contenido`, `idMensaje`, `horaMensaje`) VALUES
@@ -60,8 +62,10 @@ INSERT INTO `mensajes` (`origen`, `destino`, `contenido`, `idMensaje`, `horaMens
 (2, 1, 'b', '1c60d51bf541a07714fb404af81f83824c838798', '2017-06-08 12:40:37'),
 (2, 1, 'm', '2b753db8784e3420c47f0d5881275f0df841fe67', '2017-06-08 12:41:05'),
 (2, 1, 'd', '3e3afb2c4c811f56fa82fafcf801e5af2c7640a5', '2017-06-08 12:40:41'),
+(2, 1, 'hola mr', '3f8304c55f217ed5658d70a87afcae9c502408e3', '2017-06-09 12:49:24'),
 (2, 1, '3', '5323628f113b129f6eb2ff31d51713ce01ea1192', '2017-06-08 12:41:26'),
 (2, 1, 'c', '579cd36dd07636881c2e4c8b331afb51f0c7414c', '2017-06-08 12:40:38'),
+(2, 1, 'test', '75472eb3fc1469b6fe7c9563a309a92cc70870a5', '2017-06-09 12:49:40'),
 (2, 1, 'a', '8218804e3b09d4a947431e971fd598c14cc766d4', '2017-06-08 12:40:36'),
 (2, 1, 'f', '822ef2e0b2a704a0c907d1d16df089f770d8a7ee', '2017-06-08 12:40:43'),
 (2, 1, 'i', 'c80569ceaa7cf9921fe063218cc3b5487f6482da', '2017-06-08 12:40:54'),
@@ -75,161 +79,167 @@ INSERT INTO `mensajes` (`origen`, `destino`, `contenido`, `idMensaje`, `horaMens
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `paradas`
+-- Table structure for table `paradas`
 --
 
 CREATE TABLE `paradas` (
   `idViaje` int(11) NOT NULL,
-  `ciudadParada` varchar(100) NOT NULL,
-  `fechaPaso` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ciudadParada` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `fechaPaso` datetime NOT NULL,
+  `precioParada` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pasajerosviaje`
+-- Table structure for table `pasajerosviaje`
 --
 
 CREATE TABLE `pasajerosviaje` (
   `idViaje` int(11) NOT NULL,
   `idPasajero` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `flag` int(11) NOT NULL,
-  `nombreUsuario` varchar(25) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `telefono` varchar(15) NOT NULL,
-  `dni` varchar(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nombreUsuario` varchar(25) CHARACTER SET latin1 NOT NULL,
+  `email` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `password` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `telefono` varchar(15) CHARACTER SET latin1 NOT NULL,
+  `dni` varchar(12) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `flag`, `nombreUsuario`, `email`, `password`, `telefono`, `dni`) VALUES
 (1, 0, 'pikachu', 'pikaìka@pokemail.com', 'aasdasd', '0000000', '00000000'),
-(2, 0, 'trump', 'POTUS@pokemail.com', 'adasdasd', '0000044', '00000044');
+(2, 0, 'trump', 'POTUS@pokemail.com', 'adasdasd', '0000044', '00000044'),
+(3, 0, 'sara', 'sara@gmail.com', 'sara', '12345677', '13123213123'),
+(10, 1, 'jesus', 'jesus@mail.com', 'jesus', '1231231', '12312321'),
+(13, 1, 'conductor', 'taxidriver@mail.com', 'conductor', '987202020', '12312321A');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `viajes`
+-- Table structure for table `viajes`
 --
 
 CREATE TABLE `viajes` (
   `id` int(11) NOT NULL,
   `horaSalida` datetime NOT NULL,
   `precio` float NOT NULL,
-  `conductorID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `conductorID` int(11) NOT NULL,
+  `nPlazas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `comentarios`
+-- Indexes for table `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`idComen`),
   ADD KEY `idViaje` (`idViaje`);
 
 --
--- Indices de la tabla `mensajes`
+-- Indexes for table `mensajes`
 --
 ALTER TABLE `mensajes`
   ADD PRIMARY KEY (`origen`,`destino`,`idMensaje`),
   ADD KEY `destino` (`destino`);
 
 --
--- Indices de la tabla `paradas`
+-- Indexes for table `paradas`
 --
 ALTER TABLE `paradas`
   ADD PRIMARY KEY (`idViaje`,`ciudadParada`);
 
 --
--- Indices de la tabla `pasajerosviaje`
+-- Indexes for table `pasajerosviaje`
 --
 ALTER TABLE `pasajerosviaje`
   ADD PRIMARY KEY (`idViaje`,`idPasajero`),
   ADD KEY `idPasajero` (`idPasajero`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `viajes`
+-- Indexes for table `viajes`
 --
 ALTER TABLE `viajes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `conductorID` (`conductorID`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `comentarios`
+-- AUTO_INCREMENT for table `comentarios`
 --
 ALTER TABLE `comentarios`
   MODIFY `idComen` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT de la tabla `viajes`
+-- AUTO_INCREMENT for table `viajes`
 --
 ALTER TABLE `viajes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `comentarios`
+-- Constraints for table `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `Comentarios_ibfk_1` FOREIGN KEY (`idViaje`) REFERENCES `viajes` (`id`);
 
 --
--- Filtros para la tabla `mensajes`
+-- Constraints for table `mensajes`
 --
 ALTER TABLE `mensajes`
   ADD CONSTRAINT `Mensajes_ibfk_1` FOREIGN KEY (`origen`) REFERENCES `usuarios` (`id`),
   ADD CONSTRAINT `Mensajes_ibfk_2` FOREIGN KEY (`destino`) REFERENCES `usuarios` (`id`);
 
 --
--- Filtros para la tabla `paradas`
+-- Constraints for table `paradas`
 --
 ALTER TABLE `paradas`
   ADD CONSTRAINT `Paradas_ibfk_1` FOREIGN KEY (`idViaje`) REFERENCES `viajes` (`id`);
 
 --
--- Filtros para la tabla `pasajerosviaje`
+-- Constraints for table `pasajerosviaje`
 --
 ALTER TABLE `pasajerosviaje`
   ADD CONSTRAINT `PasajerosViaje_ibfk_1` FOREIGN KEY (`idPasajero`) REFERENCES `usuarios` (`id`),
   ADD CONSTRAINT `PasajerosViaje_ibfk_2` FOREIGN KEY (`idViaje`) REFERENCES `viajes` (`id`);
 
 --
--- Filtros para la tabla `viajes`
+-- Constraints for table `viajes`
 --
 ALTER TABLE `viajes`
   ADD CONSTRAINT `Viajes_ibfk_1` FOREIGN KEY (`conductorID`) REFERENCES `usuarios` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

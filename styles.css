@@ -18,6 +18,11 @@ body{
     margin-top: 20px;
     margin:auto;
     display:block;
+    margin:auto;
+}
+
+.grupoBotones {
+    display: inline;
 }
 .boton:hover {
     background-color:transparent;

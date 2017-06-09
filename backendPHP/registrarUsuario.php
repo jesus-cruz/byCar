@@ -18,7 +18,7 @@ class TablaUsuarios
 	// Creamos uno conexión a la base de datos
 	function __construct() {
         $db_host = "localhost";
-        $db_name = "database";
+        $db_name = "byCarDB";
         $db_user = "root";
         $db_pass = "";
 
@@ -69,7 +69,7 @@ class TablaUsuarios
         /* Antes de insertar un usuario comprobamos que no haya otro con el mismo 
          * nombre de usuario
          */
-        $sql = 'SELECT * FROM Usuarios WHERE nombreUsuario=' . $nombre;
+        $sql = 'SELECT * FROM usuarios WHERE nombreUsuario=' . $nombre;
         $resultado = $this->db->query($sql);
         // Ya existe un usuario con ese nombre
         if ($resultado->rowCount() > 0) {
@@ -77,7 +77,7 @@ class TablaUsuarios
             return;
         }
         else {
-            $sql = 'INSERT INTO Usuarios ( flag,nombreUsuario,
+            $sql = 'INSERT INTO usuarios ( flag,nombreUsuario,
             email, password, telefono, dni) 
                 VALUES ( '  
                        .$flag   .'

@@ -29,14 +29,14 @@
             <input type="text" name="email" id="email"><br>       
 
             <label for="password">Password:</label><br>
-            <input type="text" name="password" id="password"><br>
+            <input type="password" name="password" id="password"><br>
 
             <label for="telefono">Telefono:</label><br>
             <input type="text" name="telefono" id="telefono"><br>
         
             <label for="dni">DNI:</label><br>
             <input type="text" name="dni" id="dni"><br>      
-            
+                
         </div>
 
         <input class="boton" type="button" value="Registrarse" name="botonRegistro" id="botonRegistrar">
@@ -44,21 +44,12 @@
     </form>
     
     <div class="cajaTexto">
-        <form action="backendPHP/subirImagen.php" method="post"name="formFoto" enctype="multipart/form-data" >
-                <input type="file" name="foto" id="foto"><br>
-                <input type="submit" name="subirFoto" value="subir">
+        <form action="backendPHP/subirImagen.php" method="post" id="formFoto" enctype="multipart/form-data" >
+                <input type="file" name="foto" id="foto"  accept="image/*" >
+            <br>            
         </form>
     </div>
     
-    <form action="backendPHP/verificarCodigo.php" method="GET">
-        <div class="cajaTexto">
-            <label for="codigo">Código:</label><br> 
-            <input type="text" name="campoCodigo" id="campoCodigo"><br>   
-        </div>
-
-        <input class="boton" type="submit" value="Enviar Código" name="botonCodigo">
-
-    </form>
 
 </body>
 
