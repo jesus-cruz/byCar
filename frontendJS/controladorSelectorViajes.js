@@ -93,9 +93,9 @@ function getAvailableTrips() {
 		maxprice_ = "10000"; 
 	}
 
-	var valoracion_ = $('buscarValoracion :selected').text();
+	var valoracion_ = $('#buscarValoracion :selected').text();
 	if(valoracion_ == "Valoracion del Conductor"){
-		valoracion_ = "0";
+		valoracion_ = "1";
 	}
 
 	//$_POST['from'], $_POST['to'],$_POST['day'],$_POST['month'],$_POST['year'], $_POST['minprice'], $_POST['maxprice'], $_POST['valoracion'];
@@ -140,7 +140,7 @@ function createElementBulder(rowdata) {
 	}else if(rowdata.precio < 30){
 		type = "<a href='#' class='list-group-item list-group-item-warning'>"
 	}else{
-		type = "<a href='#' class='list-group-item list-group-item-danger'>"
+		type = "<a href='#' class='list-group-item list-group-item-danger' >"
 	}
 
 	var builder = type +

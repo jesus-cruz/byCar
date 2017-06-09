@@ -1,6 +1,7 @@
 
 body{
     background-image: url('resources/background.jpg') !important;
+    font-family: Arial;
 }
 
 .cajaTexto {
@@ -12,6 +13,7 @@ body{
 
 .tituloPagina {
     text-align: center;
+    font-size: 3em;
 }
 
 .boton {
@@ -19,12 +21,15 @@ body{
     margin:auto;
     display:block;
     margin:auto;
+    background-color: Transparent;
+    color: white;
+}
+.boton:hover{
+    border-color: rgb(120,120,255);
 }
 
 .grupoBotones {
     display: inline;
-}
-.boton:hover {
     background-color:transparent;
 }
 
@@ -40,13 +45,13 @@ body{
 }
 
 input {
-    color: whitesmoke;
+    color: black;
     width: 20%;
     height: 50px;
 }
 
 select {
-    color: whitesmoke;
+    color: black;
     width: 20%;
     opacity: 50%;
     height: 50px;
@@ -59,11 +64,10 @@ label, h1, p, legend{
 
 /*Especificos de la pagina principal*/
 #resBusqueda{
-    width: 60%;
+    width: 70%;
     height: 500px;
     margin:auto;
     display:block;
-    border: 1px solid black;
     overflow-y: scroll;
 }
 .cuadroViaje{

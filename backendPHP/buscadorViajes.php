@@ -1,7 +1,5 @@
 <?php
 
-
-
 if(isset($_POST['action']) && !empty($_POST['action'])) {
 
 	$action = $_POST['action'];
@@ -13,9 +11,9 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 		case "getAvailableCitysDest": $tablaviajes->getAvailableCitysDest();
 		break;
 		case "getTrips": $tablaviajes->getAvailableTrips($_POST['from'], $_POST['to'],
-														 $_POST['day'], $_POST['month'],$_POST['year'],
-														 $_POST['minprice'], $_POST['maxprice'],
-														 $_POST['valoracion']);
+			$_POST['day'], $_POST['month'],$_POST['year'],
+			$_POST['minprice'], $_POST['maxprice'],
+			$_POST['valoracion']);
 		break;
 	}
 	
@@ -32,7 +30,7 @@ class BusquedaViajes
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
-		$databasename = "byCarDB";
+		$databasename = "database";
 
 		
 		$this->db = new mysqli($servername, $username, $password, $databasename);
@@ -47,17 +45,19 @@ class BusquedaViajes
 	public function getAvailableTrips($from, $to, $day, $month, $year, $minprice, $maxprice, $valoracion)
 	{	
 		//saca todos los viajes que hacen match con el origne, destino, dia
-		$sql = "SELECT * FROM viajes WHERE origen = '" .$from. "' AND destino = '".$to."' AND horaSalida REGEXP '".$year."-".$month."-".$day." ..:..:..' AND precio >= ".$minprice.s" AND precio <= ".$maxprice."";
-
-		$valoracionConductor = "5";
-
+		$sql = "SELECT * FROM viajes WHERE origen = '" .$from. "' AND destino = '".$to."' AND horaSalida REGEXP '".$year."-".$month."-".$day." ..:..:..' AND precio >= ".$minprice." AND precio <= ".$maxprice."";
+		
 		$result = $this->db->query($sql);
 		$return_arr = array();
 
 		if ($result->num_rows > 0){
 			while ($row = mysqli_fetch_assoc($result)) {
-				$row['valoracion'] = $valoracionConductor;
-				array_push($return_arr, $row);
+
+				$row['valoracion'] = $this->getDriverScore($row['id']);
+				//Control de el filtro de valoracion y del numero de sitios ocupados [0,1,2,3]
+				if($row['valoracion'] >= $valoracion && $this->getOcuppiedSeatsTrip($row['id']) < 4){
+					array_push($return_arr, $row);
+				}
 			}
 		}
 		echo json_encode($return_arr);
@@ -91,6 +91,34 @@ class BusquedaViajes
 		}
 
 		echo json_encode($return_arr);
+	}
+	//Saca de la tabla mensajes la puntuacion del conductor con ID dado
+	private function getDriverScore($id)
+	{
+		$sql = "SELECT puntuacion FROM comentarios WHERE conductor =".$id;
+		$result = $this->db->query($sql);
+
+		$ret_value = 0;
+		$counter = 0;
+
+		if ($result->num_rows > 0){
+			while ($row = mysqli_fetch_assoc($result)) {
+				$ret_value = $ret_value + $row['puntuacion'];
+				$counter++;
+			}
+		}
+
+		if($counter == 0){
+			return 5;	//Puntuacion por defecto
+		}
+		return floor($ret_value/$counter); //Redondeo a la baja de todas las puntuaciones
+	}
+
+	private function getOcuppiedSeatsTrip($id)
+	{	
+		$result = $this->db->query("SELECT idPasajero FROM pasajerosviaje WHERE idViaje = '".$id."'");
+		$ret = $this->db->affected_rows;
+		return $ret;
 	}
 }
 ?>
