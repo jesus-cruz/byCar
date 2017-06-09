@@ -1,3 +1,8 @@
+
+body{
+    background-image: url('resources/background.jpg') !important;
+}
+
 .cajaTexto {
 	text-align: center;
     margin-top: 20px;
@@ -14,6 +19,9 @@
     margin:auto;
     display:block;
 }
+.boton:hover {
+    background-color:transparent;
+}
 
 .enlaces {
 	text-align: center;
@@ -24,4 +32,48 @@
 .textoPresentacion {
 	text-align: center;
     margin-bottom: 20px;
+}
+
+input {
+    color: whitesmoke;
+    width: 20%;
+    height: 50px;
+}
+
+select {
+    color: whitesmoke;
+    width: 20%;
+    opacity: 50%;
+    height: 50px;
+}
+
+label, h1, p, legend{
+    color: #fff !important;
+}
+
+
+/*Especificos de la pagina principal*/
+#resBusqueda{
+    width: 60%;
+    height: 500px;
+    margin:auto;
+    display:block;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
+.cuadroViaje{
+    padding: 10px;
+}
+.precio{
+    float: right;
+    font-size: 3em;
+}
+.titulo{
+    font-size: 2em;
+}
+.valoracion{
+    display: inline-block;
+}
+span{
+    margin-left: 30px;
 }

@@ -12,7 +12,10 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 		break;
 		case "getAvailableCitysDest": $tablaviajes->getAvailableCitysDest();
 		break;
-		case "getTrips": $tablaviajes->getAvailableTrips($_POST['from'], $_POST['to'],$_POST['day'],$_POST['month'],$_POST['year']);
+		case "getTrips": $tablaviajes->getAvailableTrips($_POST['from'], $_POST['to'],
+														 $_POST['day'], $_POST['month'],$_POST['year'],
+														 $_POST['minprice'], $_POST['maxprice'],
+														 $_POST['valoracion']);
 		break;
 	}
 	
@@ -41,16 +44,19 @@ class BusquedaViajes
 	}        
 
 	//Los parametros de fecha deben llevar el siguiente estilo ####-##-##;
-	public function getAvailableTrips($from, $to, $day , $month, $agno)
-	{
-		$sql = "SELECT * FROM viajes WHERE origen = '" .$from. "' AND destino = '".$to."' AND horaSalida REGEX '"
-		.$year."-".$month."-".$day." ..:..:..'";
+	public function getAvailableTrips($from, $to, $day, $month, $year, $minprice, $maxprice, $valoracion)
+	{	
+		//saca todos los viajes que hacen match con el origne, destino, dia
+		$sql = "SELECT * FROM viajes WHERE origen = '" .$from. "' AND destino = '".$to."' AND horaSalida REGEXP '".$year."-".$month."-".$day." ..:..:..' AND precio >= ".$minprice.s" AND precio <= ".$maxprice."";
+
+		$valoracionConductor = "5";
 
 		$result = $this->db->query($sql);
 		$return_arr = array();
 
 		if ($result->num_rows > 0){
 			while ($row = mysqli_fetch_assoc($result)) {
+				$row['valoracion'] = $valoracionConductor;
 				array_push($return_arr, $row);
 			}
 		}
