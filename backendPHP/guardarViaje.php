@@ -4,14 +4,16 @@
     $destino  = $_POST['destino'];
     $horaLlegada = $_POST['horaLlegada'];
     $precio = $_POST['precio'];
-    $conductorID = $_SESSION['usuarioActual'];
+
+    session_start();
+    $conductorID = $_SESSION['id'];
 
     $tablaViajesModelo = new TablaViajes();
-    //$tablaUsuariosModelo->__construct();
-    $tablaUsuariosModelo->añadirUsuario($horaSalida,$nPlazas,);
-    
+    $tablaViajesModelo->añadirViaje($horaSalida,$nPlazas,$conductorID);
+    $idViaje = $tablaViajesModelo->obtenerIdViaje($nPlazas,$conductorID);
+    $tablaViajesModelo->añadirParada($destino,$horaLlegada,$idViaje,$precio);
 
-class TablaUsuarios
+class TablaViajes
 {
     var $db = null;
     
@@ -30,75 +32,63 @@ class TablaUsuarios
         }
    	}
 
-    private function comprobarFlag($flag){
-        switch ($flag) {
-            // Flag de tipo de usuario Pasajero
-            case 0:               
-                return true;
-                break;
-            // Flag de tipo de usuario Conductor
-            case 1:
-                return true;
-                break;
-            // Cualquier otro tipo
-            default:
-                return false;
-                break;
-        }
+    // Hay problemas con la hora, de momento usare el numero de plazas
+    public function obtenerIdViaje($nPlazas,$conductorID){
+        $nPlazas = '"' . $nPlazas . '"';
+        $conductorID = '"' . $conductorID . '"';
+        $sql = 'SELECT id FROM viajes WHERE  (nPlazas='
+            . $nPlazas 
+            . ' AND conductorID='
+            . $conductorID 
+            .')';
+        
+        $result = $this->db->query($sql); 
+
+        $result = $result->fetch(PDO::FETCH_BOTH);
+        $result = $result[0];
+        
+        return $result;
+    }
+    //INSERT INTO paradas ( idViaje,precioParada) VALUES ( 15,25)
+    public function añadirParada($destino,$horaLlegada,$idViaje,$precio){
+        $destino = '"' . $destino . '"';
+        $horaLlegada = '"' . $horaLlegada . '"';
+        $idViaje = '"' . $idViaje . '"';
+        $precio = '"' . $precio . '"';
+        $sql = 'INSERT INTO paradas ( ciudadParada, idViaje,
+        precioParada)     VALUES ( '  
+                       .$destino    .'
+                    ,' .$idViaje    .'
+                    ,' .$precio    .'
+                    )';
+        
+        $usuario = $this->db->query($sql);  
     }
     
 	// Añadimos un usuario habiéndonos conectado antes
-	public function añadirUsuario($nombre,$flag,$email,$passwd,$tlfno,$dni){
+	public function añadirViaje($horaSalida,$nPlazas,$conductorID){
         // Comprobamos si estamos conectados a la db
         if ( is_null($this->db) ){
             $this->__construct();
         }
-        // Caso de flag erróneo
-        if ( !$this->comprobarFlag($flag) ){
-            echo -1;
-            return;
-        }
+
+        // Sabemos el nombre del conductor, necesitamos su id numerico
         
-        $nombre = '"' . $nombre . '"';
-        $flag = '"' . $flag . '"';
-        $email = '"' . $email . '"';
-        $passwd = '"' . $passwd . '"';
-        $tlfno = '"' . $tlfno . '"';
-        $dni = '"' . $dni . '"';
         
-        /* Antes de insertar un usuario comprobamos que no haya otro con el mismo 
-         * nombre de usuario
-         */
-        $sql = 'SELECT * FROM usuarios WHERE nombreUsuario=' . $nombre;
-        $resultado = $this->db->query($sql);
-        // Ya existe un usuario con ese nombre
-        if ($resultado->rowCount() > 0) {
-            echo -2;
-            return;
-        }
-        else {
-            $sql = 'INSERT INTO usuarios ( flag,nombreUsuario,
-            email, password, telefono, dni) 
-                VALUES ( '  
-                       .$flag   .'
-                    ,' .$nombre .'
-                    ,' .$email  .'
-                    ,' .$passwd .'
-                    ,' .$tlfno  .'
-                    ,' .$dni    .'
+        $horaSalida = '"' . $horaSalida . '"';
+        $nPlazas = '"' . $nPlazas . '"';
+        $conductorID = '"' . $conductorID . '"';
+
+
+        $sql = 'INSERT INTO viajes ( horaSalida,conductorID,
+        nPlazas)     VALUES ( '  
+                       .$horaSalida   .'
+                    ,' .$conductorID .'
+                    ,' .$nPlazas    .'
                     )';
 
-            $usuario = $this->db->query($sql); 
-            // Error al formar la query
-            if ( $usuario == FALSE){
-                echo -3;
-                return;
-            // Éxito
-            } else {
-                echo 1;
-                //header("location: ../login.php");
-            }
-        }       
+        
+        $usuario = $this->db->query($sql);            
     }
 }
 

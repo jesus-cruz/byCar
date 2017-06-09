@@ -45,6 +45,8 @@ $(document).ready(function () {
         cambiarEstado("cancelar");
     });
     
+    
+    
     $("#crearTrayectoForm").click(function () {
         crearTrayecto();
     });
@@ -81,7 +83,7 @@ function crearTrayecto() {
         url: "backendPHP/guardarViaje.php",
         data: $("#formCrear").serialize(),
         success: function (data) {
-            
+            //alert(data);
         }
     });
     } else {
@@ -93,6 +95,7 @@ function crearTrayecto() {
 }
 
 function comprobarCampos(){
+    return true;
     // Comprobar campos
     if( $("#horaSalida").val()  == "" ||
         $("#nPlazas").val()     == "" ||
