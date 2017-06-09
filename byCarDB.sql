@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 09, 2017 at 12:51 PM
+-- Generation Time: Jun 09, 2017 at 04:30 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -85,7 +85,8 @@ INSERT INTO `mensajes` (`origen`, `destino`, `contenido`, `idMensaje`, `horaMens
 CREATE TABLE `paradas` (
   `idViaje` int(11) NOT NULL,
   `ciudadParada` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `fechaPaso` datetime NOT NULL
+  `fechaPaso` datetime NOT NULL,
+  `precioParada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -122,7 +123,9 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `flag`, `nombreUsuario`, `email`, `password`, `telefono`, `dni`) VALUES
 (1, 0, 'pikachu', 'pikaìka@pokemail.com', 'aasdasd', '0000000', '00000000'),
 (2, 0, 'trump', 'POTUS@pokemail.com', 'adasdasd', '0000044', '00000044'),
-(3, 0, 'sara', 'sara@gmail.com', 'sara', '12345677', '13123213123');
+(3, 0, 'sara', 'sara@gmail.com', 'sara', '12345677', '13123213123'),
+(10, 1, 'jesus', 'jesus@mail.com', 'jesus', '1231231', '12312321'),
+(13, 1, 'conductor', 'taxidriver@mail.com', 'conductor', '987202020', '12312321A');
 
 -- --------------------------------------------------------
 
@@ -134,7 +137,8 @@ CREATE TABLE `viajes` (
   `id` int(11) NOT NULL,
   `horaSalida` datetime NOT NULL,
   `precio` float NOT NULL,
-  `conductorID` int(11) NOT NULL
+  `conductorID` int(11) NOT NULL,
+  `nPlazas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -194,7 +198,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `viajes`
 --

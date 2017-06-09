@@ -12,33 +12,89 @@
  */
 
 $(document).ready(function () {
+    // Por defecto mostramos los botones para seleccionar la accion a realizar
+    cambiarEstado("vacio");
+
     // Crear un nuevo trayecto
-    $("#botonCrear").click(function() {
-           
-    });   
-    
+    $("#botonCrear").click(function () {
+        cambiarEstado("crear");
+    });
+
     // Listar los trayectos propios
-    $("#botonListarTrayectos").click(function() {
-           
-    }); 
-    
+    $("#botonListarTrayectos").click(function () {
+        cambiarEstado("listarTrayectos");
+    });
+
     // Listar pasajeros de un trayecto
-    $("#botonListarPasajeros").click(function() {
-           
-    }); 
-    
+    $("#botonListarPasajeros").click(function () {
+        cambiarEstado("listarPasajeros");
+    });
+
     // Editar un trayecto
-    $("#botonEditar").click(function() {
-           
-    }); 
-    
+    $("#botonEditar").click(function () {
+        cambiarEstado("editar");
+    });
+
     // Borrar un trayecto
-    $("#botonBorrar").click(function() {
-           
-    }); 
-    
+    $("#botonBorrar").click(function () {
+        cambiarEstado("borrar");
+    });
+
     // Cancelar un trayecto
-    $("#botonCancelar").click(function() {
-           
-    }); 
+    $("#botonCancelar").click(function () {
+        cambiarEstado("cancelar");
+    });
 });
+
+function cambiarEstado(estado) {
+    vaciar();
+    switch (estado) {
+        case "crear":
+            $("#cajaCrear").show();
+            break;
+        case "vacio":
+            vaciar();
+            break;
+        default:
+
+    }
+}
+
+function vaciar() {
+    $("#cajaCrear").hide();
+    $("#cajaListarTrayectos").hide();
+    $("#cajaListarPasajeros").hide();
+    $("#cajaEditar").hide();
+    $("#cajaBuscar").hide();
+    $("#cajaPublicar").hide();
+}
+
+function crearTrayecto() {
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

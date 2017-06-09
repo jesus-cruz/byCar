@@ -9,15 +9,13 @@
     text-align: center;
 }
 
-.boton {
-    margin-top: 20px;
-    margin:auto;
-    display:block;
-    margin:auto;
+button {
+    display:inline-block;       
+    margin:0 auto;
 }
 
 .grupoBotones {
-    display: inline;
+    text-align: center;
 }
 
 .enlaces {
