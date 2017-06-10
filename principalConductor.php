@@ -45,8 +45,11 @@
             <h1 class="tituloPagina">Crear un nuevo trayecto</h1>
             <form id="formCrear" name="formCrear">
                 Fecha de salida<br>
-                <input type="date" id="horaSalida" name="horaSalida">
+                <input type="date" id="fechaSalida" name="fechaSalida">
 
+                <br> Hora de salida<br>
+                <input type="text" id="horaSalida" name="horaSalida">
+                
                 <br> Número de plazas<br>
                 <input type="text" id="nPlazas" name="nPlazas">
                 
@@ -57,8 +60,11 @@
                 <input type="text" id="destino" name="destino">
 
                 <br> Fecha de llegada<br>
-                <input type="date" id="horaLlegada" name="horaLlegada">
+                <input type="date" id="fechaLlegada" name="fechaLlegada">
 
+                <br> Hora de llegada<br>
+                <input type="text" id="horaLlegada" name="horaLlegada">
+                
                 <br> Precio<br>
                 <input type="text" id="precio" name="precio">
                 <br>

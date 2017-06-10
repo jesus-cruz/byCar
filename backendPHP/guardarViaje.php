@@ -1,8 +1,10 @@
 <?php   
+    $fechaSalida = $_POST['fechaSalida'];
     $horaSalida = $_POST['horaSalida'];
     $nPlazas   = $_POST['nPlazas'];
     $destino  = $_POST['destino'];
     $horaLlegada = $_POST['horaLlegada'];
+    $fechaLlegada = $_POST['fechaLlegada'];
     $precio = $_POST['precio'];
     $origen = $_POST['origen'];
 
@@ -10,9 +12,9 @@
     $conductorID = $_SESSION['id'];
 
     $tablaViajesModelo = new TablaViajes();
-    $tablaViajesModelo->añadirViaje($horaSalida,$nPlazas,$conductorID,$origen,$destino);
+    $tablaViajesModelo->añadirViaje($fechaSalida,$horaSalida,$nPlazas,$conductorID,$origen,$destino,$precio);
     $idViaje = $tablaViajesModelo->obtenerIdViaje($nPlazas,$conductorID);
-    $tablaViajesModelo->añadirParada($destino,$horaLlegada,$idViaje,$precio);
+    $tablaViajesModelo->añadirParada($fechaSalida,$destino,$horaLlegada,$idViaje,$precio);
 
 class TablaViajes
 {
@@ -67,17 +69,19 @@ class TablaViajes
     }
     
 	// Añadimos un usuario habiéndonos conectado antes
-	public function añadirViaje($horaSalida,$nPlazas,$conductorID,$origen,$destino){
+	public function añadirViaje($fechaSalida,$horaSalida,$nPlazas,$conductorID,$origen,$destino,$precio)
+    {
         // Comprobamos si estamos conectados a la db
         if ( is_null($this->db) ){
             $this->__construct();
         }
-
-        // Sabemos el nombre del conductor, necesitamos su id numerico
+        
+        // Formateamos la fecha
+        $fechaSalida = strtotime($fechaSalida);
+        $horaSalida = strtotime($horaSalida);
+        $fechaHoraSalida= '"' . date("Y-m-d", $fechaSalida) . ' ' . date("h:i:sa", $horaSalida) . '"';
         
         
-        //$horaSalida = '"' . $horaSalida . '"';
-        $horaSalida ='"' . date ("Y-m-d H:i:s" ) . '"';
         $nPlazas = '"' . $nPlazas . '"';
         $conductorID = '"' . $conductorID . '"';
         $origen = '"' . $origen . '"';
@@ -85,12 +89,13 @@ class TablaViajes
 
 
         $sql = 'INSERT INTO viajes ( horaSalida,conductorID,
-        nPlazas, origen,destino)     VALUES ( '  
-                       .$horaSalida   .'
+        nPlazas, origen, destino, precio)     VALUES ( '  
+                       .$fechaHoraSalida   .'
                     ,' .$conductorID .'
-                    ,' .$nPlazas    .'
-                    ,' .$origen    .'
-                    ,' .$destino    .'
+                    ,' .$nPlazas     .'
+                    ,' .$origen      .'
+                    ,' .$destino     .'
+                    ,' .$precio     .'
                     )';
 
         

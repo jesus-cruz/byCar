@@ -105,7 +105,7 @@ function agregarDestino(){
         url: "backendPHP/guardarDestino.php",
         data: $("#formCrear").serialize(),
         success: function (data) {
-            //alert(data);
+            alert(data);
         }
     });
     } else {
@@ -119,12 +119,15 @@ function agregarDestino(){
 
 function comprobarCampos(){
     // Comprobar campos
-    if( $("#horaSalida").val()  == "" ||
-        $("#nPlazas").val()     == "" ||
-        $("#destino").val()     == "" ||
-        $("#origen").val()     == "" || 
-        $("#horaLlegada").val() == "" ||
-        $("#precio").val()      == "" ){
+    return true;
+    if( $("#fechaSalida").val()  == "" ||
+        $("#nPlazas").val()      == "" ||
+        $("#destino").val()      == "" ||
+        $("#origen").val()       == "" || 
+        $("#horaLlegada").val()  == "" ||
+        $("#horaSalida").val()   == "" ||
+        $("#fechaLlegada").val() == "" ||
+        $("#precio").val()       == "" ){
         return false;
     } else {
         return true;
