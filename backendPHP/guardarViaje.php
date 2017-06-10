@@ -76,7 +76,8 @@ class TablaViajes
         // Sabemos el nombre del conductor, necesitamos su id numerico
         
         
-        $horaSalida = '"' . $horaSalida . '"';
+        //$horaSalida = '"' . $horaSalida . '"';
+        $horaSalida ='"' . date ("Y-m-d H:i:s" ) . '"';
         $nPlazas = '"' . $nPlazas . '"';
         $conductorID = '"' . $conductorID . '"';
         $origen = '"' . $origen . '"';

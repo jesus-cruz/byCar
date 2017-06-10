@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 09, 2017 at 05:56 PM
+-- Generation Time: Jun 10, 2017 at 01:04 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -31,9 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `comentarios` (
   `idViaje` int(11) NOT NULL,
   `idComen` int(11) NOT NULL,
-  `comentario` varchar(140) COLLATE utf8_spanish_ci NOT NULL,
-  `puntuacion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `comentario` varchar(140) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `puntuacion` int(11) NOT NULL,
+  `conductor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,10 @@ CREATE TABLE `viajes` (
   `id` int(11) NOT NULL,
   `horaSalida` datetime NOT NULL,
   `conductorID` int(11) NOT NULL,
-  `nPlazas` int(11) NOT NULL
+  `nPlazas` int(11) NOT NULL,
+  `origen` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `destino` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `precio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -149,7 +153,8 @@ CREATE TABLE `viajes` (
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`idComen`),
-  ADD KEY `idViaje` (`idViaje`);
+  ADD KEY `idViaje` (`idViaje`),
+  ADD KEY `conductor` (`conductor`);
 
 --
 -- Indexes for table `mensajes`
@@ -202,7 +207,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Constraints for dumped tables
 --
@@ -211,7 +216,8 @@ ALTER TABLE `viajes`
 -- Constraints for table `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `Comentarios_ibfk_1` FOREIGN KEY (`idViaje`) REFERENCES `viajes` (`id`);
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`idViaje`) REFERENCES `viajes` (`id`),
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`conductor`) REFERENCES `usuarios` (`id`);
 
 --
 -- Constraints for table `mensajes`
