@@ -4,12 +4,13 @@
     $destino  = $_POST['destino'];
     $horaLlegada = $_POST['horaLlegada'];
     $precio = $_POST['precio'];
+    $origen = $_POST['origen'];
 
     session_start();
     $conductorID = $_SESSION['id'];
 
     $tablaViajesModelo = new TablaViajes();
-    $tablaViajesModelo->añadirViaje($horaSalida,$nPlazas,$conductorID);
+    $tablaViajesModelo->añadirViaje($horaSalida,$nPlazas,$conductorID,$origen,$destino);
     $idViaje = $tablaViajesModelo->obtenerIdViaje($nPlazas,$conductorID);
     $tablaViajesModelo->añadirParada($destino,$horaLlegada,$idViaje,$precio);
 
@@ -66,7 +67,7 @@ class TablaViajes
     }
     
 	// Añadimos un usuario habiéndonos conectado antes
-	public function añadirViaje($horaSalida,$nPlazas,$conductorID){
+	public function añadirViaje($horaSalida,$nPlazas,$conductorID,$origen,$destino){
         // Comprobamos si estamos conectados a la db
         if ( is_null($this->db) ){
             $this->__construct();
@@ -78,13 +79,17 @@ class TablaViajes
         $horaSalida = '"' . $horaSalida . '"';
         $nPlazas = '"' . $nPlazas . '"';
         $conductorID = '"' . $conductorID . '"';
+        $origen = '"' . $origen . '"';
+        $destino = '"' . $destino . '"';
 
 
         $sql = 'INSERT INTO viajes ( horaSalida,conductorID,
-        nPlazas)     VALUES ( '  
+        nPlazas, origen,destino)     VALUES ( '  
                        .$horaSalida   .'
                     ,' .$conductorID .'
                     ,' .$nPlazas    .'
+                    ,' .$origen    .'
+                    ,' .$destino    .'
                     )';
 
         

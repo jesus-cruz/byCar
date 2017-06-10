@@ -121,7 +121,8 @@ function comprobarCampos(){
     // Comprobar campos
     if( $("#horaSalida").val()  == "" ||
         $("#nPlazas").val()     == "" ||
-        $("#destino").val()     == "" || 
+        $("#destino").val()     == "" ||
+        $("#origen").val()     == "" || 
         $("#horaLlegada").val() == "" ||
         $("#precio").val()      == "" ){
         return false;

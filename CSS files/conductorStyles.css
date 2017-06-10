@@ -1,3 +1,22 @@
+body{
+    background-image: url('../resources/background.jpg') !important;
+    font-family: Arial;
+    color: white;
+}
+
+#enlace {
+    color:white;
+}
+
+
+label {
+color: #B4886B;
+font-weight: bold;
+display: block;
+width: 150px;
+float: left;
+}
+
 .cajaTexto {
 	text-align: center;
     margin-top: 20px;
@@ -12,6 +31,7 @@
 button {
     display:inline-block;       
     margin:0 auto;
+    width: auto;
 }
 
 .grupoBotones {

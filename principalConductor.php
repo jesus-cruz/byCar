@@ -25,15 +25,17 @@
         <div class="grupoBotones">
             <button class="boton" id="botonCrear" type="button" onclick="">Crear  trayecto</button>
 
-            <button class="boton" id="botonListarTrayectos" type="button" onclick="">Publicar trayecto</button>
+            <button class="boton" id="botonListarTrayectos" type="button" onclick="">Listar traytectos</button>
 
-            <button class="boton" id="botonListarPasajeros" type="button" onclick="">Publicar trayecto</button>
+            <button class="boton" id="botonListarPasajeros" type="button" onclick="">Listar pasajeros</button>
 
-            <button class="boton" id="botonEditar" type="button" onclick="">Publicar trayecto</button>
+            <button class="boton" id="botonEditar" type="button" onclick="">Editar trayecto</button>
 
-            <button class="boton" id="botonBorrar" type="button" onclick="">Publicar trayecto</button>
+            <button class="boton" id="botonBorrar" type="button" onclick="">Borrar trayecto</button>
 
-            <button class="boton" id="botonCancelar" type="button" onclick="">Publicar trayecto</button>
+            <button class="boton" id="botonCancelar" type="button" onclick="">Cancelar</button>
+            
+            <button class="boton" id="botonCerrarSesion" type="button" onclick="">Cerrar Sesión</button>
         </div>
 
 
@@ -47,6 +49,9 @@
 
                 <br> Número de plazas<br>
                 <input type="text" id="nPlazas" name="nPlazas">
+                
+                <br> Origen<br>
+                <input type="text" id="origen" name="origen">
 
                 <br> Destino <br>
                 <input type="text" id="destino" name="destino">
@@ -116,11 +121,7 @@
             <label for="horaSal"> Hora de llegada</label><br>
             <input type="text" id="horaLlegada" name="horaLlegada"><br>
         </div>
-
-
-        <div class="cajaTexto">
-            <a href="backendPHP/cerrarSesion.php">Cerrar sesion</a>
-        </div>
+        
         <?php
         //echo"usuario " . $_SESSION['usuarioActual'] . " id-> " . $_SESSION['id'];
     ?>
