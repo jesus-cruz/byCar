@@ -3,11 +3,6 @@ $(document).ready(function() {
 	getAvaliableCitys();
 	$("#resBusqueda").hide();
 
-	//Que destino ha sido seleccionado
-	$('.list-group-item').click(function(){
-		var justify = $(this)[0].innerHTML;
-		alert(justify);
-	});
 });
 
 //recupera de la bbdd la lista de las ciudades disponibles y las muestra en los selectores.
@@ -131,22 +126,25 @@ function getAvailableTrips() {
 				builder = createElementBulder(data[i]);
 				addTripToList(builder);
 			}
+			window.scrollTo(0,document.body.scrollHeight);
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
 		}
 	});
+
+	
 }
 function createElementBulder(rowdata) {
 
 	var type = "";
 	var paradas = "";
 	if(rowdata.precio < 10){
-		type = "<a href='#' class='list-group-item list-group-item-success'>";
+		type = "<a href='#' class='list-group-item list-group-item-success' onclick='tripSelected("+rowdata.id+")' >";
 	}else if(rowdata.precio < 30){
-		type = "<a href='#' class='list-group-item list-group-item-warning'>"
+		type = "<a href='#' class='list-group-item list-group-item-warning' onclick='tripSelected("+rowdata.id+")'>"
 	}else{
-		type = "<a href='#' class='list-group-item list-group-item-danger' >"
+		type = "<a href='#' class='list-group-item list-group-item-danger' onclick='tripSelected("+rowdata.id+")'>"
 	}
 
 	var builder = type +
@@ -169,4 +167,8 @@ function addTripToList(element) {
 function clearTripList(argument) {
 	$('#resBusqueda').empty();
 	$("#resBusqueda").show();
+}
+
+function tripSelected(id){
+	alert("Cicked "+id);
 }

@@ -57,7 +57,7 @@ select {
     height: 50px;
 }
 
-label, h1, p, legend{
+label, h1, h2 ,p, legend{
     color: #fff !important;
 }
 
@@ -68,7 +68,8 @@ label, h1, p, legend{
     height: 500px;
     margin:auto;
     display:block;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
+    overflow-y:auto;
 }
 .cuadroViaje{
     padding: 10px;

@@ -1,10 +1,13 @@
 <?php
 
+
+$tablaviajes = new BusquedaViajes();
+
 if(isset($_POST['action']) && !empty($_POST['action'])) {
 
 	$action = $_POST['action'];
 	$tablaviajes = new BusquedaViajes();
-
+	
 	switch($action) {
 		case "getAvailableCitysOrigin": $tablaviajes->getAvailableCitysOrigin();
 		break;
@@ -16,9 +19,9 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 			$_POST['valoracion']);
 		break;
 	}
-	
-}
 
+	$tablaviajes->closeConn();
+}
 
 class BusquedaViajes 
 {
@@ -109,7 +112,7 @@ class BusquedaViajes
 		}
 
 		if($counter == 0){
-			return 5;	//Puntuacion por defecto
+			return "Nadie ha puntuado a este conductor todavia";	   //Puntuacion por defecto
 		}
 		return floor($ret_value/$counter); //Redondeo a la baja de todas las puntuaciones
 	}
@@ -119,6 +122,11 @@ class BusquedaViajes
 		$result = $this->db->query("SELECT idPasajero FROM pasajerosviaje WHERE idViaje = '".$id."'");
 		$ret = $this->db->affected_rows;
 		return $ret;
+	}
+	
+	public function closeConn()
+	{
+		$this->db->close();
 	}
 }
 ?>
