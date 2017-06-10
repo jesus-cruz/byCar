@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 10, 2017 at 01:04 PM
+-- Generation Time: Jun 10, 2017 at 04:43 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -145,6 +145,13 @@ CREATE TABLE `viajes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
+-- Dumping data for table `viajes`
+--
+
+INSERT INTO `viajes` (`id`, `horaSalida`, `conductorID`, `nPlazas`, `origen`, `destino`, `precio`) VALUES
+(2, '2016-12-07 02:05:00', 10, 3, 'LeÃ³n', 'Madrid', 15);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -207,7 +214,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
