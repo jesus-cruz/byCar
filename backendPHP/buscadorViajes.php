@@ -30,7 +30,7 @@ class BusquedaViajes
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
-		$databasename = "byCarDB";
+		$databasename = "bycardb";
 
 		
 		$this->db = new mysqli($servername, $username, $password, $databasename);
@@ -75,10 +75,10 @@ class BusquedaViajes
 			}
 		}
 
-		echo json_encode($return_arr);
+		echo json_encode($return_arr,JSON_UNESCAPED_UNICODE);
 	}
 
-	public function getAvailableCitysDest()
+	public function getAvailableCitysDest()	
 	{
 		$sql = "SELECT destino FROM viajes";
 		$result = $this->db->query($sql);
@@ -90,7 +90,7 @@ class BusquedaViajes
 			}
 		}
 
-		echo json_encode($return_arr);
+		echo json_encode($return_arr,JSON_UNESCAPED_UNICODE);
 	}
 	//Saca de la tabla mensajes la puntuacion del conductor con ID dado
 	private function getDriverScore($id)

@@ -34,6 +34,9 @@ function getAvaliableCitysOrigin() {
 			}
 			addElementsInListToSelector('#buscarOrigen',lst);
 		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
+		}
 	});
 }
 
@@ -53,6 +56,9 @@ function getAvaliableCitysDest(){
 			}
 			addElementsInListToSelector('#buscarDestino',lst);
 		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
+		}
 	});
 }
 

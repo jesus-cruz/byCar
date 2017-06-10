@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2017 a las 17:26:02
+-- Tiempo de generación: 10-06-2017 a las 18:44:43
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `comentarios` (
   `idViaje` int(11) NOT NULL,
   `idComen` int(11) NOT NULL,
-  `comentario` varchar(140) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `comentario` varchar(140) CHARACTER SET latin1 NOT NULL,
   `puntuacion` int(11) NOT NULL,
   `conductor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `comentarios`
@@ -55,10 +55,10 @@ INSERT INTO `comentarios` (`idViaje`, `idComen`, `comentario`, `puntuacion`, `co
 CREATE TABLE `mensajes` (
   `origen` int(11) NOT NULL,
   `destino` int(11) NOT NULL,
-  `contenido` varchar(140) COLLATE utf8_spanish_ci NOT NULL,
-  `idMensaje` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
+  `contenido` varchar(140) CHARACTER SET latin1 NOT NULL,
+  `idMensaje` varchar(60) CHARACTER SET latin1 NOT NULL,
   `horaMensaje` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `mensajes`
@@ -95,10 +95,10 @@ INSERT INTO `mensajes` (`origen`, `destino`, `contenido`, `idMensaje`, `horaMens
 
 CREATE TABLE `paradas` (
   `idViaje` int(11) NOT NULL,
-  `ciudadParada` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `ciudadParada` varchar(100) CHARACTER SET latin1 NOT NULL,
   `fechaPaso` datetime NOT NULL,
   `precioParada` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -109,7 +109,7 @@ CREATE TABLE `paradas` (
 CREATE TABLE `pasajerosviaje` (
   `idViaje` int(11) NOT NULL,
   `idPasajero` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -125,14 +125,14 @@ CREATE TABLE `usuarios` (
   `password` varchar(100) CHARACTER SET latin1 NOT NULL,
   `telefono` varchar(15) CHARACTER SET latin1 NOT NULL,
   `dni` varchar(12) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `flag`, `nombreUsuario`, `email`, `password`, `telefono`, `dni`) VALUES
-(1, 0, 'pikachu', 'pikaìka@pokemail.com', 'aasdasd', '0000000', '00000000'),
+(1, 0, 'pikachu', 'pikaÃ¬ka@pokemail.com', 'aasdasd', '0000000', '00000000'),
 (2, 0, 'trump', 'POTUS@pokemail.com', 'adasdasd', '0000044', '00000044'),
 (3, 0, 'sara', 'sara@gmail.com', 'sara', '12345677', '13123213123'),
 (10, 1, 'jesus', 'jesus@mail.com', 'jesus', '1231231', '12312321'),
@@ -149,27 +149,26 @@ CREATE TABLE `viajes` (
   `horaSalida` datetime NOT NULL,
   `conductorID` int(11) NOT NULL,
   `nPlazas` int(11) NOT NULL,
-  `origen` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `destino` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `origen` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `destino` varchar(100) CHARACTER SET latin1 NOT NULL,
   `precio` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `viajes`
 --
 
 INSERT INTO `viajes` (`id`, `horaSalida`, `conductorID`, `nPlazas`, `origen`, `destino`, `precio`) VALUES
-(1, '2017-06-09 11:00:00', 1, 0, 'Cuenca', 'León', 23),
-(2, '2016-12-07 02:05:00', 10, 3, 'LeÃ³n', 'Madrid', 15),
+(1, '2017-06-09 11:00:00', 1, 0, 'Cuenca', 'LeÃ³n', 23),
 (3, '2017-06-09 13:00:00', 2, 0, 'Madrid', 'Barcelona', 23),
 (4, '2017-06-09 14:00:00', 2, 0, 'Madrid', 'Bilbao', 23),
 (5, '2017-06-09 15:00:00', 1, 0, 'Madrid', 'Siena', 23),
-(9, '2017-06-09 16:11:11', 2, 0, 'León', 'Cuenca', 5),
-(10, '2017-06-09 17:11:11', 2, 0, 'León', 'Cuenca', 15),
-(11, '2017-06-09 18:11:11', 2, 0, 'León', 'Cuenca', 30),
-(12, '2017-06-09 19:11:11', 2, 0, 'León', 'Cuenca', 40),
-(13, '2017-06-09 20:11:11', 2, 0, 'León', 'Cuenca', 50),
-(14, '2017-06-09 12:00:00', 1, 0, 'León', 'Cuenca', 23);
+(9, '2017-06-09 16:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 5),
+(10, '2017-06-09 17:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 15),
+(11, '2017-06-09 18:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 30),
+(12, '2017-06-09 19:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 40),
+(13, '2017-06-09 20:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 50),
+(14, '2017-06-09 12:00:00', 1, 0, 'LeÃ³n', 'Cuenca', 23);
 
 --
 -- Índices para tablas volcadas
