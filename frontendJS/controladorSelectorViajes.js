@@ -172,3 +172,4 @@ function clearTripList(argument) {
 function tripSelected(id){
 	alert("Cicked "+id);
 }
+//TODO-> añadir una llamada de ajax para que cuando clickes osbre un viaje se te apunte el $SESSION_ que estas logqueasfsea

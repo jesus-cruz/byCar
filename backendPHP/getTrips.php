@@ -7,7 +7,7 @@ $q = intval($_GET['q']);
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "byCarDB";
+$dbname = "bycardb";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -25,7 +25,10 @@ if ($result->num_rows > 0) {
 		if ($result2->num_rows > 0) {
 			$row2 = $result2->fetch_assoc();
 			echo "<label id='".$row2["id"]."' class='clickable'>";
-			echo $row2["id"]." ".$row2["horaSalida"]." ".$row2["precio"]." ".$row2["conductorID"]."</label> <br>";
+			echo $row2["id"]." ".$row2["horaSalida"]." ".$row2["precio"]." ".$row2["conductorID"]."</label> ";
+			echo "<label id='".$row2["id"]."' class='anul'> delete </label>";
+				
+			echo "<br>";
 		}
 		
 	}
@@ -37,3 +40,5 @@ $conn->close();
 ?>
 </body>
 </html>
+
+

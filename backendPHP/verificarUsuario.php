@@ -1,8 +1,8 @@
 <?php
-
+    //Este escrip es llamado el enviar el formulario de loggin
     try{
         $db_host = "localhost";
-        $db_name = "byCarDB";
+        $db_name = "bycardb";
         $db_user = "root";
         $db_pass = "";
 

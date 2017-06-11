@@ -1,7 +1,5 @@
 <?php
 
-
-
 if(isset($_POST['action']) && !empty($_POST['action'])) {
 
 	$action = $_POST['action'];
@@ -13,10 +11,9 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 		case "GET_MESSAGES": $chat->getMessagesList(2 , $_POST["user_id_1"]); //$_SESSION['id']; //HARDCOREADO PARA PRUEBAS
 		break;
 	}
-	
+
 	$chat->closeConn();
 }
-
 
 class ChatManager 
 {
