@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    <div id="userinfobox"></div>
     <h1 class=tituloPagina>Buscador de viajes</h1>
     <p class="textoPresentacion">Bienvenido a nuestro buscador de vehículos compartidos, a continuación 
         puedes buscar los viajes disponibles, para reservar o publicar viajes debes

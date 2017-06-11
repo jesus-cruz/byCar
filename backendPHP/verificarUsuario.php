@@ -46,10 +46,10 @@
    
 
             if($flag['flag']==1){   // es conductor
-                header("location: ../principalConductor.php");
+                header("location: ../principal.php");
             }
             else if($flag['flag']==0){  // es pasajero
-                header("location: ../principalPasajero.php");
+                header("location: ../principal.php");
             }
 
         }else{

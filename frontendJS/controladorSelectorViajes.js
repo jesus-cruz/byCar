@@ -1,7 +1,14 @@
+var SESSION = {};
+SESSION.id = null;
+SESSION.name = null;
+SESSION.flag = null;
+
+
 $(document).ready(function() {
 	
 	getAvaliableCitys();
 	$("#resBusqueda").hide();
+	checkForSession();
 
 });
 
@@ -105,17 +112,17 @@ function getAvailableTrips() {
 		url: "backendPHP/buscadorViajes.php",
 		dataType: "json",
 		data:{  		
-		action: "getTrips",
-		from: from_,
-		to: to_,
-		day: day_,
-		month: month_,
-		year: year_,
-		minprice : minprice_,
-		maxprice : maxprice_,
-		valoracion : valoracion_,
-	},
-	success: function(data){
+			action: "getTrips",
+			from: from_,
+			to: to_,
+			day: day_,
+			month: month_,
+			year: year_,
+			minprice : minprice_,
+			maxprice : maxprice_,
+			valoracion : valoracion_,
+		},
+		success: function(data){
 			
 			var builder = '<a href="#" class="list-group-item list-group-item-danger">No hay ningun viaje disponible para los datos de busqueda introducidos</a>'
 			if(data.length == 0){
@@ -148,16 +155,15 @@ function createElementBulder(rowdata) {
 	}
 
 	var builder = type +
-                "<div class='cuadroViaje'>"+
-                    "<span class='titulo'>"+ rowdata.origen +"-"+ rowdata.destino +"</span>"+
-                    "<span>Hola salida:" + rowdata.horaSalida +"</span>"+
-                  //  "<span>Hola llegada:" 00:00:00"</span>"+
-                   	"<span class='precio'>"+rowdata.precio+"€</span>"+
-                    "<span class='valoracion'>Valoracion Conductor: "+rowdata.valoracion+"</span>"+
-                "</div>"+
-            "</a>";
+	"<div class='cuadroViaje'>"+
+	"<span class='titulo'>"+ rowdata.origen +"-"+ rowdata.destino +"</span>"+
+	"<span>Hola salida:" + rowdata.horaSalida +"</span>"+
+	"<span class='precio'>"+rowdata.precio+"€</span>"+
+	"<span class='valoracion'>Valoracion Conductor: "+rowdata.valoracion+"</span>"+
+	"</div>"+
+	"</a>";
 
-    return builder;
+	return builder;
 }
 
 
@@ -172,4 +178,26 @@ function clearTripList(argument) {
 function tripSelected(id){
 	alert("Cicked "+id);
 }
-//TODO-> añadir una llamada de ajax para que cuando clickes osbre un viaje se te apunte el $SESSION_ que estas logqueasfsea
+
+//Mira  a ver si hay alguna session inciada, si es asi muestra al user en la barrita de arriba
+function checkForSession() {
+
+	$('#userinfobox').hide();
+	$.ajax({
+		type: "post",
+		dataType: "JSON",
+		url: "backendPHP/checkSession.php",	
+		success: function(data){
+
+			SESSION.id = data.id;
+			SESSION.name = data.usuarioActual;
+			SESSION.flag = data.flag;
+
+			$('#userinfobox').show();
+			$('#userinfobox').append("<label>"+ data.id +"-"+data.usuarioActual +" -"+data.flag +"</label>");
+		},
+		error:function(a,b,c){
+			alert(a+b+c);
+		}
+	});
+}
