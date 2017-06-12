@@ -10,11 +10,10 @@ body{
 
 
 label {
-color: #B4886B;
-font-weight: bold;
-display: block;
-width: 150px;
-float: left;
+    color: #B4886B;
+    font-weight: bold;
+    display: block;
+    width: 150px;
 }
 
 .cajaTexto {
@@ -47,4 +46,64 @@ button {
 .textoPresentacion {
 	text-align: center;
     margin-bottom: 20px;
+}
+
+.test{
+    padding: 5px;
+    
+}
+
+li{
+    text-align: left;
+}
+.boton {
+    padding: 20px;
+    margin-top: 20px;
+    margin:auto;
+    display:inline;
+    margin:auto;
+    background-color: Transparent;
+    color: white;
+    padding: 10px;
+}
+.boton:hover{
+    border-color: rgb(120,120,255);
+}
+
+.cancel {
+    color:white;
+    border: 1px solid red;
+    background-color: rgba(255,0,0,0.2);
+    width: 90px;
+    cursor:pointer;
+    margin: 5px;
+    float: right;
+}
+.cancel:hover {
+   background-color: transparent;
+   color:white;
+}
+
+.accept{
+    border: 1px solid blue;
+    background-color: rgba(0,0,255,0.2);
+}
+.accept:hover {
+   background-color: transparent;
+   color:white;
+}
+
+.container{
+    background-color: rgba(120,120,120,0.5);
+}
+.ciudades{
+    color: #FFF;
+}
+#cajaListarTrayectos{
+    padding: 5px;
+    margin: 5px;
+    font-size: 12px;
+}
+#hidden{
+    display: none;
 }

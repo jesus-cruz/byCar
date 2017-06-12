@@ -1,0 +1,35 @@
+table, th , td  {
+    border:1px solid black;
+    text-align: center;
+    margin: 0 auto;
+    border-color: white;
+    background-color: rgba(120,120,120,0.5);
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 70%;
+}
+label{
+    color:red;
+    text-decoration: underline;
+}
+.notdelete{
+    color:lightblue;
+    text-decoration: underline;
+}
+.boton {
+    padding: 20px;
+    margin:auto;
+    margin-top: 20px;
+    display:block;
+    margin:auto;
+    background-color: Transparent;
+    color: white;
+}
+.boton:hover{
+    border-color: rgb(120,120,255);
+}
+body{
+    background-image: url('../resources/background.jpg') !important;
+    font-family: Arial;
+    color: white;
+}

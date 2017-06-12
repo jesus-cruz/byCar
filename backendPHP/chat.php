@@ -5,10 +5,11 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
 	$action = $_POST['action'];
 	$chat = new ChatManager();
 
+	session_start();
 	switch($action) {
-		case "SET_MESSAGE": $chat->sendMessage($_POST['message'], 2 , $_POST["user_id_1"]); //$_SESSION['id']; //HARDCOREADO PARA PRUEBAS
+		case "SET_MESSAGE": $chat->sendMessage($_POST['message'], $_SESSION['id'], $_POST["user_id_1"]); 
 		break;
-		case "GET_MESSAGES": $chat->getMessagesList(2 , $_POST["user_id_1"]); //$_SESSION['id']; //HARDCOREADO PARA PRUEBAS
+		case "GET_MESSAGES": $chat->getMessagesList($_SESSION['id'], $_POST["user_id_1"]); 
 		break;
 	}
 
@@ -45,6 +46,7 @@ class ChatManager
 
 		$sql = "INSERT INTO mensajes (origen,destino,contenido,idMensaje,horaMensaje) VALUES ('".$from."','".$to."','".$message."','".$message_hash."','".$message_date."')";
 
+
 		if($this->db->query($sql)){ //Inserta el mensaje enviado en la BBDD
 			echo json_encode(array('time' => $message_date,
 				'message' => $message, 
@@ -58,6 +60,7 @@ class ChatManager
 	{
 
 		$sql = "SELECT * FROM mensajes WHERE origen ='".$from."' AND destino='".$to."' OR origen ='".$to."' AND destino='".$from."' ORDER BY horaMensaje";
+
 		$result = $this->db->query($sql);
 
 		$return_arr = array();

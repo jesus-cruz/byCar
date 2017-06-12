@@ -64,6 +64,10 @@ function cambiarEstado(estado) {
         case "vacio":
             vaciar();
             break;
+        case "listarTrayectos":
+            addTrayectosList();
+            $('#cajaListarTrayectos').show();
+            break;
         default:
 
     }
@@ -86,15 +90,16 @@ function crearTrayecto() {
         url: "backendPHP/guardarViaje.php",
         data: $("#formCrear").serialize(),
         success: function (data) {
-            //alert(data);
+            alert("Viaje guardado" + data);
+            vaciar();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
         }
     });
     } else {
         alert("Error en los campos, introduzca los necesarios y al menos un destino");
     }
-    // Primero añadimos el trayecto
-    
-    // Añadimos al menos una parada, al añadirla limpiamos los campos
 }
 
 function agregarDestino(){
@@ -134,8 +139,162 @@ function comprobarCampos(){
     }
 }
 
+function backToMainPage(){
+  window.location.href = "principal.php";
+}
 
 
+function openChatWith(id){
+    sessionStorage.setItem('you_id', id);
+    window.location.href = "chatPage.php";
+}
+
+function addTrayectosList(){
+
+    //Hacemos el ajax para sacar todos los viajes
+    $.ajax({
+        type: "post",
+        url: "backendPHP/buscadorViajes.php",
+        data:{ action: "getAllTrips",},
+        dataType: "json",
+        success: function(data){
+           createTrayectosItems(data);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
+        }
+    });
+}
+
+function createTrayectosItems(data){
+
+    $('#cajaListarTrayectos').empty();
+    
+    for (var i = 0; i < data.length; i++) {
+        var list = createPassengersList(data[i].pasajeros);
+
+        var salida = data[i].horaSalida;
+        var llegada = data[i].horaLlegada;
+        var npas = data[i].pasajeros.length;
+
+        var builder = '<div class="container">'+
+            '<div class="test">'+
+                '<div class="variables">'+
+                    '<fieldset><form id="form_'+data[i].id+'" name="formCrear">'+
+                        '<legend>Informacion del viaje</legend>'+
+                        '<span>'+
+                            'Fecha de salida:'+
+                            '<input type="date" id="fechaSalida_" name="fechaSalida" value="'+salida.substring(0,10)+'">'+
+                        '</span>'+
+                        '<span>'+
+                            'Hora de salida:'+
+                            '<input type="text" id="horaLlegada_" name="horaSalida" value="'+salida.substring(11,30)+'">'+
+                       '</span>'+
+                        '<span>'+
+                            'Número de plazas:'+
+                            '<input type="text" id="nPlazas_" name="nPlazas" value="'+data[i].nPlazas+'">'+
+                        '</span>'+
+                        '<span>'+
+                            '<label class="ciudades">'+data[i].origen+'</label>'+
+                        '</span>'+
+                        '<br'+
+                        '<span>'+
+                            '<label class="ciudades">'+data[i].destino+'</label>'+
+                        '</span>'+
+                        '<span>'+
+                         'Fecha de llegada:'+
+                         '<input type="date" id="fechaLlegada_" name="fechaLlegada" value="'+llegada.substring(0,10)+'">'+
+                        '</span>'+
+                        '<span>'+
+                        'Hora de llegada:'+
+                            '<input type="text" id="horaLlegada_" name="horaLlegada" value="'+llegada.substring(11,30)+'">'+
+                        '</span>'+
+                        '<span>'+
+                            'Precio:'+
+                            '<input type="text" id="precio_" name="precio" value="'+data[i].precio+'">'+
+                        '</span>'+
+                        '<input type="text" id="hidden" name="id" value="'+data[i].id+'">'+
+
+                '</form></fieldset>'+
+            '</div>'+
+            '<div>'+
+             '<button class="cancel" onclick="cancelTrip('+data[i].id+','+npas+')"> Cancelar viaje. </button>'+
+             '<button class="cancel accept" onclick="saveChanges('+data[i].id+')"> Guardar Cambios. </button>'+
+         '</div>'+
+         '<div>'+
+            '<div class="test">'+
+                '<ul>'+
+                 list+
+                '</ul>'+
+                '<div>'+
+                '</div>'+
+
+            '</div>'+
+        '</div>';
+        $('#cajaListarTrayectos').append(builder);
+    }
+}
+
+function createPassengersList(pasajeros) {
+    var builder="";
+    if(pasajeros.length==0){
+        return "<li>No hay ningun pasajero en este viaje</li>";
+    }
+
+    for (var i = 0; i < pasajeros.length; i++) {
+
+        builder = builder + '<li onclick="openChatWith('+ pasajeros[i].idPasajero +')">Pasajero '+ pasajeros[i].nombre +'</li>'
+    }
+    return builder;
+}
+
+function cancelTrip(id,num_pasajeros){
+    
+    var action="";
+    if(num_pasajeros==0){
+        action = "delete"; //Lo borramos como cancelado
+    }else{
+        action= "update"; //Lo marcamos como cancelado
+    }
+
+     $.ajax({
+        type: "POST",
+        url: "backendPHP/borrarModificarViaje.php",
+        data:{
+            action:action,
+            id:id,
+        },
+           
+        success: function (data) {
+            if(num_pasajeros==0){
+                alert("Viaje borrado");
+            }else{
+                alert("Viaje marcado como cancelado");
+            }
+            vaciar();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
+        },
+    });
+}
+
+function saveChanges(id){
+
+    $.ajax({
+        type: "POST",
+        url: "backendPHP/actualizarViaje.php",
+        data: $("#form_"+id).serialize(),
+           
+        success: function (data) {
+            alert("Cambios guardados");
+            vaciar();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
+        },
+    });
+}
 
 
 

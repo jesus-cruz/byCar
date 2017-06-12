@@ -50,6 +50,8 @@
             }
             else if($flag['flag']==0){  // es pasajero
                 header("location: ../principal.php");
+            }else if($flag['flag']==2){  // es admin
+                header("location: ../principalAdmin.php");
             }
 
         }else{

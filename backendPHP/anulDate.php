@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-<body>
 
 <?php
 $q = intval($_GET['q']);
@@ -25,7 +22,5 @@ $result = $conn->query($sql);
 
 $conn->close();
 ?>
-</body>
-</html>
 
 

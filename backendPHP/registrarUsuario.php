@@ -1,4 +1,5 @@
-<?php   
+<?php
+
     $nombre = $_POST['nombre'];
     $flag   = $_POST['tipo'];
     $email  = $_POST['email'];
@@ -91,7 +92,7 @@ class TablaUsuarios
             $usuario = $this->db->query($sql); 
             // Error al formar la query
             if ( $usuario == FALSE){
-                echo -3;
+                echo -3;    
                 return;
             // Éxito
             } else {

@@ -1,14 +1,14 @@
 var me = {};
-me.avatar = "http://sumedico.com/wp-content/uploads/2017/02/donald_trump_enfermedades.jpg";
+me.avatar = "https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/car-64.png";
 
 var you = {};
-you.avatar = "https://s-media-cache-ak0.pinimg.com/736x/76/47/9d/76479dd91dc55c2768ddccfc30a4fbf5.jpg";
-you.id = 1; //Harcodeado para testeo;
+you.avatar = "https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/car-64.png";
+you.id = sessionStorage.getItem('you_id');
 
 $(document).ready(function(){
 	//Documento preparado
 	//Recuperamos mediante ajax todos los chats entre los usuarios
-
+	
 	getChatMessages(you.id);
 	//setInterval(function() { resetChat(); getChatMessages(you.id); },1000);	//Actualiza el chat cada segundo,
 
@@ -138,5 +138,9 @@ function addToList(element) {
 
 function resetChat(){
 	$("ul").empty();
+}
+
+function exitChat(){
+	window.history.back();
 }
 

@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html>
-<body>
-
 <?php
 $q = intval($_GET['q']);
 $servername = "localhost";
@@ -25,10 +21,5 @@ if ($result->num_rows > 0) {
 	}
 }
 
-
-
-
 $conn->close();
 ?>
-</body>
-</html>

@@ -1,0 +1,43 @@
+body{
+    background-image: url('../resources/background.jpg') !important;
+    font-family: Arial;
+    color: white;
+}
+table, th , td  {
+    border:1px solid black;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    /*margin: 0 auto;*/
+    border-color: white;
+    background-color: black;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: rgba(120,120,120,0.5);
+}
+div{
+    width: 100%;
+}
+a{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    color:white;
+    
+}
+.boton {
+    padding: 20px;
+    margin-top: 20px;
+    margin:auto;
+    display:inline;
+    margin:auto;
+    background-color: Transparent;
+    color: white;
+    padding: 10px;
+}
+.boton:hover{
+    border-color: rgb(120,120,255);
+}
+.grupoBotones {
+    text-align: center;
+}

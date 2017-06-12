@@ -84,6 +84,19 @@ label, h1, h2 ,p, legend{
 .valoracion{
     display: inline-block;
 }
+#userinfobox{
+    /*height: 40px;*/
+    font-size: 15px;
+    padding: 15;
+    background-color: rgba(120,120,120,0.5);
+}
+.cerrarSesion{
+    text-align: right;
+    float: right;
+}
 span{
     margin-left: 30px;
+}
+ul:before{
+     content:attr(aria-label);
 }

@@ -5,132 +5,67 @@
     <link rel="stylesheet" type="text/css" href="CSS files/conductorStyles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="frontendJS/controladorConductor.js"></script>
-</head>
 
-<head>
+    <?php
+        session_start(); //reanuda la sesion    
+        if( !isset($_SESSION['usuarioActual']) || $_SESSION['flag']!=1){ 
+        //no hay nada en la sesion o alguien que no es conductor pretende acceder a esta pagina
+            header("location: login.php");
+        }
+    ?>
 
 </head>
 
 <body>
 
-    <?php
-        session_start(); //reanuda la sesion
-        
-        if( !isset($_SESSION['usuarioActual']) || $_SESSION['flag']!=1 ){ //no hay nada en la sesion o alguien que no es conductor pretende acceder a esta pagina
-            header("location: login.php");
-        }
+    <div class="grupoBotones">
+        <button class="boton" id="botonCrear" type="button" onclick="">Crear  trayecto</button>
 
-    ?>
+        <button class="boton" id="botonListarTrayectos" type="button" onclick="">Listar traytectos</button>
 
-        <div class="grupoBotones">
-            <button class="boton" id="botonCrear" type="button" onclick="">Crear  trayecto</button>
+        <button class="boton" id="botonCerrarSesion" type="button" onclick="backToMainPage()">Volver al principal</button>
+    </div>
 
-            <button class="boton" id="botonListarTrayectos" type="button" onclick="">Listar traytectos</button>
 
-            <button class="boton" id="botonListarPasajeros" type="button" onclick="">Listar pasajeros</button>
+    <div class="cajaTexto" id="cajaCrear">
+        <h1 class="tituloPagina">Crear un nuevo trayecto</h1>
+        <form id="formCrear" name="formCrear">
 
-            <button class="boton" id="botonEditar" type="button" onclick="">Editar trayecto</button>
+            <br>Fecha de salida<br>
+            <input type="date" id="fechaSalida" name="fechaSalida">
 
-            <button class="boton" id="botonBorrar" type="button" onclick="">Borrar trayecto</button>
+            <br>Hora de salida<br>
+            <input type="text" id="horaSalida" name="horaSalida">
 
-            <button class="boton" id="botonCancelar" type="button" onclick="">Cancelar</button>
+            <br>Número de plazas<br>
+            <input type="text" id="nPlazas" name="nPlazas">
+
+            <br>Origen<br>
+            <input type="text" id="origen" name="origen">
+
+            <br>Destino <br>
+            <input type="text" id="destino" name="destino">
+
+            <br>Fecha de llegada<br>
+            <input type="date" id="fechaLlegada" name="fechaLlegada">
+
+            <br>Hora de llegada<br>
+            <input type="text" id="horaLlegada" name="horaLlegada">
+
+            <br>Precio<br>
+            <input type="text" id="precio" name="precio">
             
-            <button class="boton" id="botonCerrarSesion" type="button" onclick="">Cerrar Sesión</button>
-        </div>
-
-
-
-
-        <div class="cajaTexto" id="cajaCrear">
-            <h1 class="tituloPagina">Crear un nuevo trayecto</h1>
-            <form id="formCrear" name="formCrear">
-                Fecha de salida<br>
-                <input type="date" id="fechaSalida" name="fechaSalida">
-
-                <br> Hora de salida<br>
-                <input type="text" id="horaSalida" name="horaSalida">
-                
-                <br> Número de plazas<br>
-                <input type="text" id="nPlazas" name="nPlazas">
-                
-                <br> Origen<br>
-                <input type="text" id="origen" name="origen">
-
-                <br> Destino <br>
-                <input type="text" id="destino" name="destino">
-
-                <br> Fecha de llegada<br>
-                <input type="date" id="fechaLlegada" name="fechaLlegada">
-
-                <br> Hora de llegada<br>
-                <input type="text" id="horaLlegada" name="horaLlegada">
-                
-                <br> Precio<br>
-                <input type="text" id="precio" name="precio">
-                <br>
-            </form>
-            <button class="boton" id="botonAgregarDestino" type="button" onclick="">Añadir destino</button>
-            <br>
-            <input type="button" id="crearTrayectoForm" value="Crear">
-            <br>
-        </div>
-
-        <div class="cajaTexto" id="cajaListarTrayectos">
-            <h1 class="tituloPagina">Lista de trayectos propios</h1>
-        </div>
-
-        <div class="cajaTexto" id="cajaListarPasajeros">
-            <h1 class="tituloPagina">Lista de pasajeros</h1>
-        </div>
-
-        <div class="cajaTexto" id="cajaEditar">
-            <h1 class="tituloPagina"> Editar un trayecto</h1>
-        </div>
-
-        <div class="cajaTexto" id="cajaBuscar">
-            <h1 class="tituloPagina"> Buscar un viaje</h1>
-            <div class="cajaTexto">
-                <label for="buscarOrigen"> Origen </label><br>
-                <input type="text" id="buscarOrigen" name="buscarOrigen"> <br>
-
-                <label for="destino"> Destino </label> <br>
-                <input type="text" id="destino" name="destino"> <br>
-
-                <label for="fecha"> Fecha</label> <br>
-                <input type="text" id="fecha" name="fecha"><br>
-            </div>
-
-            <button class="boton" type="button" onclick="">Buscar viaje</button><br>
-        </div>
-
-
-        <div class="cajaTexto" id="cajaPublicar">
-            <h1 class="tituloPagina"> Publicar un viaje</h1>
-            <label for="origenViaje"> Origen</label><br>
-            <input type="text" id="origenViaje" name="origenViaje"><br>
-
-            <label for="destinoViaje"> Destinos (separados por comas)</label><br>
-            <input type="text" id="destino" name="destinoViaje"><br>
-
-            <label for="fechaViaje"> Fecha </label><br>
-            <input type="text" id="fechaViaje" name="fechaViaje"><br>
-
-            <label for="precioV"> Precio</label><br>
-            <input type="text" id="precioV" name="precioV"><br>
-
-            <label for="precioV"> Plazas </label><br>
-            <input type="text" id="plazasV" name="plazasV"><br>
-
-            <label for="horaSal"> Hora de salida</label><br>
-            <input type="text" id="horaSalida" name="horaSalida"><br>
-
-            <label for="horaSal"> Hora de llegada</label><br>
-            <input type="text" id="horaLlegada" name="horaLlegada"><br>
-        </div>
+        </form>
+        <input type="button" id="crearTrayectoForm"  class="boton" value="Crear">
         
-        <?php
-        //echo"usuario " . $_SESSION['usuarioActual'] . " id-> " . $_SESSION['id'];
-    ?>
+    </div>
+
+    <div class="cajaTexto" id="cajaListarTrayectos">
+        <h1 class="tituloPagina">Lista de trayectos propios</h1>
+
+    </div>
+</div>
+
 </body>
 
 

@@ -153,7 +153,7 @@ function createElementBulder(rowdata) {
 	}else{
 		type = "<a href='#' class='list-group-item list-group-item-danger' onclick='tripSelected("+rowdata.id+")'>"
 	}
-
+	var lista = createCommentsList(rowdata);
 	var builder = type +
 	"<div class='cuadroViaje'>"+
 	"<span class='titulo'>"+ rowdata.origen +"-"+ rowdata.destino +"</span>"+
@@ -161,11 +161,20 @@ function createElementBulder(rowdata) {
 	"<span class='precio'>"+rowdata.precio+"€</span>"+
 	"<span class='valoracion'>Valoracion Conductor: "+rowdata.valoracion+"</span>"+
 	"</div>"+
+	"<div><ul aria-label='Comentarios sobre este Conductor'>"+lista+"</ul></div>"
 	"</a>";
 
 	return builder;
 }
+function createCommentsList(rowdata){
 
+	var builder = "";
+
+	for (var i = 0; i < rowdata.ultimos_comentarios.length; i++) {
+		builder = builder + "<li>"+rowdata.ultimos_comentarios[i].comentario+"</li>";
+	}
+	return builder;
+}
 
 function addTripToList(element) {
 	$('#resBusqueda').append(element);
@@ -176,13 +185,38 @@ function clearTripList(argument) {
 }
 
 function tripSelected(id){
-	alert("Cicked "+id);
+	if(SESSION.flag == 0){
+		setUserInTrip(SESSION.id, id);
+	}else{
+		alert("Inice sesion como pasajero para poder reservar");
+	}
+}
+function setUserInTrip(user_id,trip_id){
+	$.ajax({
+		type: "post",
+		url: "backendPHP/registrarUsuarioEnViaje.php",
+		dataType: "text",
+		data:{
+			trip_id_: trip_id,
+			user_id_: user_id,
+		},
+		success:function(data) {
+			if(data==-1){
+				alert("ya estas en este viaje, user: "+user_id +", trip:"+trip_id);
+			}else{
+				alert("Viaje reservado!, user: "+user_id +", trip:"+trip_id);
+				loadPersonalPage();
+			}
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
+		}
+	});
 }
 
 //Mira  a ver si hay alguna session inciada, si es asi muestra al user en la barrita de arriba
 function checkForSession() {
 
-	$('#userinfobox').hide();
 	$.ajax({
 		type: "post",
 		dataType: "JSON",
@@ -193,11 +227,60 @@ function checkForSession() {
 			SESSION.name = data.usuarioActual;
 			SESSION.flag = data.flag;
 
-			$('#userinfobox').show();
-			$('#userinfobox').append("<label>"+ data.id +"-"+data.usuarioActual +" -"+data.flag +"</label>");
+			manageLogginElements(data);
+
 		},
-		error:function(a,b,c){
-			alert(a+b+c);
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert(XMLHttpRequest.responseText + ";" + textStatus + "," + errorThrown);
 		}
 	});
+}
+function manageLogginElements(data) {
+	var tipo;
+
+	if(data.flag == 0){
+		tipo = "Pasajero";
+	}else if(data.flag == 1){
+		tipo = "Conductor";
+	}else if(data.flag == 2){
+		tipo = "Admin";
+	}else{
+		tipo = "Unknown type";
+	}
+
+	if(data.id != null){ //hay alguien logueado
+
+		$('#userinfobox').show();
+		$('.enlaces').hide();
+		$('#userinfobox').append("<span onclick='userBoxClicked()'><label> Loggeado como:"
+			+ data.usuarioActual +
+			" identificador: "
+			+ data.id +
+			" tipo: "
+			+ tipo +"</label></span><span class='cerrarSesion' onclick='cerrarSesion()'><label>Cerrar Sesion</label></span>");
+	}else{ //No hay nadie logueado
+
+		$('#userinfobox').hide();
+		$('.enlaces').show();
+	}
+}
+function userBoxClicked(){
+	//Deberia de pasar a la pagina de 
+	loadPersonalPage();
+}
+function cerrarSesion(){
+	$.get("backendPHP/cerrarSesion.php");
+	$('#userinfobox').hide();
+	$('.enlaces').show();
+}
+
+//Si la sesion esta activa, carga el contenido en la pagina
+function loadPersonalPage() {
+	if(SESSION.flag == 0){
+		window.location.href = "principalP.php";
+	}else if(SESSION.flag == 1){
+		window.location.href = "principalConductor.php";
+	}else if(SESSION.flag == 2){
+		window.location.href = "principalAdmin.php";
+	}
 }

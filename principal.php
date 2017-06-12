@@ -84,7 +84,7 @@
             <a href="./login.php">Iniciar sesion</a><br>
             <a href="./registro.php">Registrarse</a><br>
         </div>
-
+       
         <!-- <h2 class=tituloPagina>Viajes disponibles:</h2> -->
         <div id="resBusqueda">
 

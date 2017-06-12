@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
 	<div class="col-sm-3 col-sm-offset-4 frame">
 		<ul></ul>
 		<div>
@@ -21,6 +22,7 @@
 				</div> 
 			</div>
 		</div>
-	</div>        
+	</div>
+	<button class="close" onclick="exitChat()">X</button>        
 </body>
 </html>
