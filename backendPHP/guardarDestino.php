@@ -12,7 +12,7 @@
     $idViaje = $tablaViajesModelo->obtenerIdViaje($nPlazas,$conductorID);
     $tablaViajesModelo->añadirParada($destino,$horaLlegada,$idViaje,$precio);
 
-class TablaViajes
+class TablaViajes 
 {
     var $db = null;
     

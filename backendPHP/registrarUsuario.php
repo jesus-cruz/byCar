@@ -1,23 +1,23 @@
 <?php
 
-    $nombre = $_POST['nombre'];
-    $flag   = $_POST['tipo'];
-    $email  = $_POST['email'];
-    $passwd = $_POST['password'];
-    $tlfno = $_POST['telefono'];
-    $dni = $_POST['dni'];
+$nombre = $_POST['nombre'];
+$flag   = $_POST['tipo'];
+$email  = $_POST['email'];
+$passwd = $_POST['password'];
+$tlfno = $_POST['telefono'];
+$dni = $_POST['dni'];
 
-    $tablaUsuariosModelo = new TablaUsuarios();
+$tablaUsuariosModelo = new TablaUsuarios();
     //$tablaUsuariosModelo->__construct();
-    $tablaUsuariosModelo->añadirUsuario($nombre,$flag,$email,$passwd,$tlfno,$dni);
-    
+$tablaUsuariosModelo->añadirUsuario($nombre,$flag,$email,$passwd,$tlfno,$dni);
+
 
 class TablaUsuarios
 {
     var $db = null;
     
 	// Creamos uno conexión a la base de datos
-	function __construct() {
+    function __construct() {
         $db_host = "localhost";
         $db_name = "byCarDB";
         $db_user = "root";
@@ -29,27 +29,27 @@ class TablaUsuarios
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }
-   	}
+    }
 
     private function comprobarFlag($flag){
         switch ($flag) {
             // Flag de tipo de usuario Pasajero
             case 0:               
-                return true;
-                break;
+            return true;
+            break;
             // Flag de tipo de usuario Conductor
             case 1:
-                return true;
-                break;
+            return true;
+            break;
             // Cualquier otro tipo
             default:
-                return false;
-                break;
+            return false;
+            break;
         }
     }
     
 	// Añadimos un usuario habiéndonos conectado antes
-	public function añadirUsuario($nombre,$flag,$email,$passwd,$tlfno,$dni){
+    public function añadirUsuario($nombre,$flag,$email,$passwd,$tlfno,$dni){
         // Comprobamos si estamos conectados a la db
         if ( is_null($this->db) ){
             $this->__construct();
@@ -80,14 +80,14 @@ class TablaUsuarios
         else {
             $sql = 'INSERT INTO usuarios ( flag,nombreUsuario,
             email, password, telefono, dni) 
-                VALUES ( '  
-                       .$flag   .'
-                    ,' .$nombre .'
-                    ,' .$email  .'
-                    ,' .$passwd .'
-                    ,' .$tlfno  .'
-                    ,' .$dni    .'
-                    )';
+            VALUES ( '  
+            .$flag   .'
+            ,' .$nombre .'
+            ,' .$email  .'
+            ,' .$passwd .'
+            ,' .$tlfno  .'
+            ,' .$dni    .'
+            )';
 
             $usuario = $this->db->query($sql); 
             // Error al formar la query

@@ -24,7 +24,8 @@ if(isset($_POST["submit"])) {
 if (move_uploaded_file($_FILES["foto"]["tmp_name"], $imagenUsr)) {
     header("location: ../paginaCodigo.php");
 } else {
-    echo "Error subiendo la imagen, pero era una imagen correcta";
+    header("location: ../paginaCodigo.php");
+    // echo "Error subiendo la imagen, pero era una imagen correcta";
 }
 
 ?>

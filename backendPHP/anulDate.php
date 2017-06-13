@@ -1,5 +1,6 @@
-
 <?php
+use 
+
 $q = intval($_GET['q']);
 $s = intval($_GET['s']);
 $servername = "localhost";

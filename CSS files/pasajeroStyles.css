@@ -41,3 +41,7 @@ a{
 .grupoBotones {
     text-align: center;
 }
+.clickable, .anul{
+    color:lightblue;
+    text-decoration: underline;
+}

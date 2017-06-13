@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2017 a las 18:44:43
+-- Tiempo de generación: 13-06-2017 a las 09:11:28
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -39,12 +39,8 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`idViaje`, `idComen`, `comentario`, `puntuacion`, `conductor`) VALUES
-(1, 1, 'a', 1, 1),
-(1, 2, 'b', 2, 1),
-(1, 3, 'c', 3, 1),
-(1, 4, 'd', 4, 1),
-(1, 5, 'e', 5, 1),
-(1, 6, 'f', 6, 1);
+(115, 1, ' Eres muy buen conductor', 4, 10),
+(115, 2, ' Viaje excelente!', 5, 10);
 
 -- --------------------------------------------------------
 
@@ -65,27 +61,17 @@ CREATE TABLE `mensajes` (
 --
 
 INSERT INTO `mensajes` (`origen`, `destino`, `contenido`, `idMensaje`, `horaMensaje`) VALUES
-(2, 1, 'Que tal', '035d5cf84acb8444e4e46ce3451e7c8e7872206c', '2017-06-08 12:40:33'),
-(2, 1, '2', '12307f9c07f05f1d4d62a19373be1135b832cfa2', '2017-06-08 12:41:17'),
-(2, 1, '1', '132ab6ee7e19dba979264f91b202d83e7596f350', '2017-06-08 12:41:16'),
-(2, 1, 'k', '17541b7e4b24a2afdaa9422a60b079ac1432bd0f', '2017-06-08 12:41:01'),
-(2, 1, 'l', '1c5a595ba39176e6c8591cde9f3419f3e80a8d84', '2017-06-08 12:41:04'),
-(2, 1, 'b', '1c60d51bf541a07714fb404af81f83824c838798', '2017-06-08 12:40:37'),
-(2, 1, 'm', '2b753db8784e3420c47f0d5881275f0df841fe67', '2017-06-08 12:41:05'),
-(2, 1, 'd', '3e3afb2c4c811f56fa82fafcf801e5af2c7640a5', '2017-06-08 12:40:41'),
-(2, 1, 'hola mr', '3f8304c55f217ed5658d70a87afcae9c502408e3', '2017-06-09 12:49:24'),
-(2, 1, '3', '5323628f113b129f6eb2ff31d51713ce01ea1192', '2017-06-08 12:41:26'),
-(2, 1, 'c', '579cd36dd07636881c2e4c8b331afb51f0c7414c', '2017-06-08 12:40:38'),
-(2, 1, 'test', '75472eb3fc1469b6fe7c9563a309a92cc70870a5', '2017-06-09 12:49:40'),
-(2, 1, 'a', '8218804e3b09d4a947431e971fd598c14cc766d4', '2017-06-08 12:40:36'),
-(2, 1, 'f', '822ef2e0b2a704a0c907d1d16df089f770d8a7ee', '2017-06-08 12:40:43'),
-(2, 1, 'i', 'c80569ceaa7cf9921fe063218cc3b5487f6482da', '2017-06-08 12:40:54'),
-(2, 1, '4', 'd721b27a9f7917c164539cbbe06e2032b8845814', '2017-06-08 12:41:26'),
-(2, 1, 'g', 'd893be63079dcbd17d8d3e7bfb536e6ac39cd89c', '2017-06-08 12:40:44'),
-(2, 1, 'j', 'ded587161af01e495af811bd05e137a8003c2f91', '2017-06-08 12:40:58'),
-(2, 1, 'h', 'e87c5c63a7d0d8ca6628599b8b19fd0cf3949e0b', '2017-06-08 12:40:50'),
-(2, 1, 'Hola', 'ebee5bb3419a617a15a1a444815b1e0e2ea5abc5', '2017-06-08 12:40:30'),
-(2, 1, 'e', 'ff5d3b73be1047b3be733a20d9f41c4b4bf1220e', '2017-06-08 12:40:42');
+(3, 3, 'LOOOL', '346dcfa4174420e716fee969f9ffc4fb20620f99', '2017-06-12 23:14:35'),
+(3, 3, 'Eso es raro', '5e47a008081dce877c876a65cbed14ac49f68fb6', '2017-06-12 23:14:26'),
+(3, 3, 'Hola', '818936f513df936e08529334b45f12c182228e4d', '2017-06-12 23:14:21'),
+(3, 3, 'Hola sara', '97165458bd9be7d01934660782c82d92f546e45a', '2017-06-13 00:57:26'),
+(3, 10, 'Hola conductor', '445634464523hgref45e', '2017-06-14 09:28:35'),
+(3, 10, 'Me llevas al parque?', '5cc26c3ab25659f9547bda41f8824cd24a884864', '2017-06-13 00:58:15'),
+(3, 15, 'Hola luis!', '9e5ac879a49233f7ad96e624b8abbe5fd74c16c9', '2017-06-13 00:01:57'),
+(10, 3, 'sdfasdf', '57b234d513929c886112029a551c0532c2b25f09', '2017-06-12 12:31:43'),
+(10, 3, 'sdfasdf', '716a7cb05789a7e48961ff2f5bc6e8eff0d8be53', '2017-06-12 12:31:22'),
+(10, 3, 'Hola usuario 3, Como estas?', 'f2f92387a2ec5de9bd0f8c326148305bf551c8a0', '2017-06-12 12:33:52'),
+(15, 3, 'hola sara', '6b2b990b5ca285cb8f4c2ad89dea6013704c1ede', '2017-06-13 00:01:26');
 
 -- --------------------------------------------------------
 
@@ -111,6 +97,16 @@ CREATE TABLE `pasajerosviaje` (
   `idPasajero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `pasajerosviaje`
+--
+
+INSERT INTO `pasajerosviaje` (`idViaje`, `idPasajero`) VALUES
+(115, 3),
+(119, 3),
+(120, 3),
+(120, 15);
+
 -- --------------------------------------------------------
 
 --
@@ -124,19 +120,23 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) CHARACTER SET latin1 NOT NULL,
   `password` varchar(100) CHARACTER SET latin1 NOT NULL,
   `telefono` varchar(15) CHARACTER SET latin1 NOT NULL,
-  `dni` varchar(12) CHARACTER SET latin1 NOT NULL
+  `dni` varchar(12) CHARACTER SET latin1 NOT NULL,
+  `fotoPath` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `flag`, `nombreUsuario`, `email`, `password`, `telefono`, `dni`) VALUES
-(1, 0, 'pikachu', 'pikaÃ¬ka@pokemail.com', 'aasdasd', '0000000', '00000000'),
-(2, 0, 'trump', 'POTUS@pokemail.com', 'adasdasd', '0000044', '00000044'),
-(3, 0, 'sara', 'sara@gmail.com', 'sara', '12345677', '13123213123'),
-(10, 1, 'jesus', 'jesus@mail.com', 'jesus', '1231231', '12312321'),
-(13, 1, 'conductor', 'taxidriver@mail.com', 'conductor', '987202020', '12312321A');
+INSERT INTO `usuarios` (`id`, `flag`, `nombreUsuario`, `email`, `password`, `telefono`, `dni`, `fotoPath`) VALUES
+(3, 0, 'sara', 'sara@gmail.com', 'sara', '12345677', '13123213123', '0'),
+(10, 1, 'jesus', 'jesus@mail.com', 'jesus', '1231231', '12312321', '0'),
+(14, 2, 'admin', 'adminadmin', 'admin', '00000000', '00000000', '0'),
+(15, 0, 'Luis', 'luis@luis.com', 'luis', '677687543', '76545687A', ''),
+(16, 0, 'asdfas', 'asdas', 'adfa', 'adfasefd', 'afcszdfc', ''),
+(17, 0, 'alba', 'alba@alba', '5647845', '678909876', '67875904J', ''),
+(18, 0, 'alba0', 'alba0@alba', 'tyjyrjbyujb', '678909876', '67875904J', ''),
+(19, 0, 'jose', 'jose', 'jose', '8957374', '8473839H', '');
 
 -- --------------------------------------------------------
 
@@ -147,28 +147,24 @@ INSERT INTO `usuarios` (`id`, `flag`, `nombreUsuario`, `email`, `password`, `tel
 CREATE TABLE `viajes` (
   `id` int(11) NOT NULL,
   `horaSalida` datetime NOT NULL,
+  `horaLlegada` datetime NOT NULL,
   `conductorID` int(11) NOT NULL,
   `nPlazas` int(11) NOT NULL,
   `origen` varchar(100) CHARACTER SET latin1 NOT NULL,
   `destino` varchar(100) CHARACTER SET latin1 NOT NULL,
-  `precio` int(11) NOT NULL
+  `precio` int(11) NOT NULL,
+  `cancelado` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `viajes`
 --
 
-INSERT INTO `viajes` (`id`, `horaSalida`, `conductorID`, `nPlazas`, `origen`, `destino`, `precio`) VALUES
-(1, '2017-06-09 11:00:00', 1, 0, 'Cuenca', 'LeÃ³n', 23),
-(3, '2017-06-09 13:00:00', 2, 0, 'Madrid', 'Barcelona', 23),
-(4, '2017-06-09 14:00:00', 2, 0, 'Madrid', 'Bilbao', 23),
-(5, '2017-06-09 15:00:00', 1, 0, 'Madrid', 'Siena', 23),
-(9, '2017-06-09 16:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 5),
-(10, '2017-06-09 17:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 15),
-(11, '2017-06-09 18:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 30),
-(12, '2017-06-09 19:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 40),
-(13, '2017-06-09 20:11:11', 2, 0, 'LeÃ³n', 'Cuenca', 50),
-(14, '2017-06-09 12:00:00', 1, 0, 'LeÃ³n', 'Cuenca', 23);
+INSERT INTO `viajes` (`id`, `horaSalida`, `horaLlegada`, `conductorID`, `nPlazas`, `origen`, `destino`, `precio`, `cancelado`) VALUES
+(115, '2017-06-09 12:00:00', '0000-00-00 00:00:00', 10, 4, 'Leon', 'Cuenca', 25, 0),
+(119, '2017-06-08 12:00:00', '2017-06-08 00:00:00', 10, 5, 'Leon', 'Barcelona', 34, 1),
+(120, '2017-06-14 12:00:00', '2017-06-15 01:00:00', 10, 4, 'Roma', 'Napoles', 5, 0),
+(121, '2017-06-16 17:00:00', '2017-06-16 05:00:00', 10, 3, 'Alfa', 'Beta', 100, 0);
 
 --
 -- Índices para tablas volcadas
@@ -223,17 +219,17 @@ ALTER TABLE `viajes`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `idComen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idComen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 --
 -- Restricciones para tablas volcadas
 --
@@ -242,15 +238,15 @@ ALTER TABLE `viajes`
 -- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`idViaje`) REFERENCES `viajes` (`id`),
-  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`conductor`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`idViaje`) REFERENCES `viajes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`conductor`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  ADD CONSTRAINT `Mensajes_ibfk_1` FOREIGN KEY (`origen`) REFERENCES `usuarios` (`id`),
-  ADD CONSTRAINT `Mensajes_ibfk_2` FOREIGN KEY (`destino`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `Mensajes_ibfk_1` FOREIGN KEY (`origen`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Mensajes_ibfk_2` FOREIGN KEY (`destino`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `paradas`
@@ -262,14 +258,14 @@ ALTER TABLE `paradas`
 -- Filtros para la tabla `pasajerosviaje`
 --
 ALTER TABLE `pasajerosviaje`
-  ADD CONSTRAINT `PasajerosViaje_ibfk_1` FOREIGN KEY (`idPasajero`) REFERENCES `usuarios` (`id`),
-  ADD CONSTRAINT `PasajerosViaje_ibfk_2` FOREIGN KEY (`idViaje`) REFERENCES `viajes` (`id`);
+  ADD CONSTRAINT `PasajerosViaje_ibfk_1` FOREIGN KEY (`idPasajero`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `PasajerosViaje_ibfk_2` FOREIGN KEY (`idViaje`) REFERENCES `viajes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  ADD CONSTRAINT `Viajes_ibfk_1` FOREIGN KEY (`conductorID`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `Viajes_ibfk_1` FOREIGN KEY (`conductorID`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
