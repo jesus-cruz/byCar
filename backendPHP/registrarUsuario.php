@@ -19,7 +19,7 @@ class TablaUsuarios
 	// Creamos uno conexión a la base de datos
     function __construct() {
         $db_host = "localhost";
-        $db_name = "byCarDB";
+        $db_name = "bycardb";
         $db_user = "root";
         $db_pass = "";
 

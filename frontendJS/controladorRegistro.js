@@ -26,8 +26,6 @@ function comprobarCampos(){
         $("#foto").val()     == "" ){
         return false;
     } else {
-        var tfno = $("#telefono");
-        localStorage.setItem("tfno",tfno);
         return true;
     }
 }

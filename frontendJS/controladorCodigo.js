@@ -1,7 +1,9 @@
 $(document).ready(function () {
-    var tfno = localStorage.getItem("tfno");
+    //var tfno = localStorage.getItem("tfno");
+    var tfno = "672214562";
     $("#telefono").val(tfno)
     $("#telefono").prop("readonly", true);
+    
     verificarMovil(tfno);   
 });
     

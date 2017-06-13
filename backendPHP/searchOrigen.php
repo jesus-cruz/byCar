@@ -3,7 +3,7 @@ $q = intval($_GET['q']);
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "byCarDB";
+$dbname = "bycardb";
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);

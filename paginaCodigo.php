@@ -14,9 +14,7 @@
 <body>
 
     <h1 class="tituloPagina">Verifique el código con el teléfono: 
-        <input type="text" name="telefono" id="telefono"><br> </h1>
-    
-    
+        <input type="text" name="telefono" id="telefono"><br> </h1>    
     
     <form action="backendPHP/verificarCodigo.php" method="GET">
         <div class="cajaTexto">
